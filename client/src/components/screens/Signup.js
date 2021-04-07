@@ -116,13 +116,14 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="file-field input-field">
+          <div className="file-field input-field pic-input">
             <div
               className="btn   white image-btn"
               style={{
                 fontSize: "2rem",
                 borderRadius: "30px",
                 border: "1px solid rgba(219,219,219)",
+                display: "flex",
               }}
             >
               <span style={{ textDecoration: "none" }}>Upload Pic</span>
@@ -130,17 +131,17 @@ function Signup() {
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
               />
-              <div className="file-path-wrapper">
-                <input
-                  className="file-path validate"
-                  type="text"
-                  style={{
-                    fontSize: "1rem",
-                    borderRadius: "40px",
-                    border: "1px solid rgba(219,219,219)",
-                  }}
-                />
-              </div>
+            </div>
+            <div className="file-path-wrapper">
+              <input
+                className="file-path validate"
+                type="text"
+                style={{
+                  fontSize: "1rem",
+                  borderRadius: "20px",
+                  borderBottom: "1px solid rgba(219,219,219)",
+                }}
+              />
             </div>
           </div>
           <button

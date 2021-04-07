@@ -156,7 +156,7 @@ function Explore() {
                 <Link
                   className="home-username"
                   style={{
-                    fontSize: "1rem",
+                    fontSize: "1.2rem",
                     textTransform: "lowercase",
                     display: "flex",
                     alignItems: "center",
@@ -175,8 +175,8 @@ function Explore() {
                     src={post.postedBy.pic}
                     alt=""
                     style={{
-                      width: "25px",
-                      height: "25px",
+                      width: "35px",
+                      height: "35px",
 
                       borderRadius: "50%",
                     }}
@@ -231,7 +231,7 @@ function Explore() {
               {/* <span>{post.likes.length}Like</span> */}
               <div
                 style={{
-                  fontSize: "0.9rem",
+                  fontSize: "1rem",
                   padding: "0px 10px",
                   margin: "0px",
                   lineHeight: "1.4",
@@ -245,7 +245,7 @@ function Explore() {
                     fontWeight: "600",
                     marginRight: "4px",
                     overflow: "hidden",
-                    fontSize: "0.8rem",
+                    fontSize: "0.9rem",
                   }}
                   to={
                     post.postedBy._id !== state._id
@@ -291,15 +291,15 @@ function Explore() {
                       src={comment.postedBy.pic}
                       alt=""
                       style={{
-                        width: "18px",
-                        height: "18px",
+                        width: "24px",
+                        height: "24px",
 
                         borderRadius: "50%",
                       }}
                     />
                     <p
                       style={{
-                        fontSize: "0.8rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         overflow: "hidden",
                       }}
@@ -308,7 +308,7 @@ function Explore() {
                       {comment.postedBy.name}
                     </p>
                   </Link>
-                  <div style={{ fontSize: "0.9rem" }}> {comment.text}</div>
+                  <div style={{ fontSize: "1rem" }}> {comment.text}</div>
                 </div>
               ))}
               <form

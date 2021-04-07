@@ -137,6 +137,7 @@ function Profile() {
               </div>
 
               <div
+                className="follower"
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
