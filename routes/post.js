@@ -18,10 +18,7 @@ router.get("/allpost", requireLogin, (req, res) => {
 });
 
 router.get("/getsubspost", requireLogin, (req, res) => {
-  Post.find(
-    { postedBy: { $in: req.user.following } },
-    { postedBy: req.user._id }
-  )
+  Post.find({ postedBy: { $in: req.user.following } })
     .populate("postedBy", "_id name pic")
     .populate("comments.postedBy", "_id name pic")
     .sort("-createdAt")
