@@ -299,7 +299,7 @@ function Explore() {
                     />
                     <p
                       style={{
-                        fontSize: "1rem",
+                        fontSize: "0.9rem",
                         fontWeight: "600",
                         overflow: "hidden",
                       }}
