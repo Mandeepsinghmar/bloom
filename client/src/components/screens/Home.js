@@ -4,6 +4,7 @@ import { UserContext } from "../../App";
 import FadeLoader from "react-spinners/FadeLoader";
 import M from "materialize-css";
 import { useHistory } from "react-router";
+import MyPosts from "../screens/MyPosts";
 
 function Home() {
   const [data, setData] = useState();
@@ -14,11 +15,11 @@ function Home() {
   const [image, setImage] = useState("");
 
   const [imageUrl, setImageUrl] = useState("");
+
   const history = useHistory();
 
   useEffect(() => {
     const abortCont = new AbortController();
-
     if (imageUrl) {
       fetch("/createpost", {
         method: "post",
@@ -188,7 +189,7 @@ function Home() {
     <div
       className="home"
       style={{
-        marginTop: "60px",
+        marginTop: "80px",
       }}
     >
       <div className="post-container input-field">
@@ -273,6 +274,7 @@ function Home() {
         </div>
       </div>
 
+      <MyPosts />
       {data ? (
         data.map((post) => (
           <div

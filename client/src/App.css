@@ -5,12 +5,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #2e313c;
 }
 .material-icons {
   cursor: pointer !important;
-  color: #000, rgba(219, 219, 219);
+  /* color: #fff, rgba(219, 219, 219) !important; */
+  color: #000 !important;
   font-size: 28px;
 }
+/* #2e313c */
 a {
   color: #000 !important;
 }
@@ -19,7 +22,9 @@ a {
 }
 .app,
 body {
-  background-color: rgba(250, 250, 250) !important;
+  /* background-color: rgba(250, 250, 250) !important; */
+  /* background-color: #8a83a3 !important; */
+  background-color: #ecf0f3;
 }
 .brand-logo,
 .card-content h2 {
@@ -27,6 +32,7 @@ body {
   font-family: "Press Start 2P", cursive;
 }
 .brand-logo {
+  color: #000 !important;
   font-size: 1.4rem;
   font-weight: 500;
 }
@@ -80,19 +86,29 @@ input[type="file"] {
   font-weight: 700;
   transition: 0.2s ease-in-out;
 }
+
 .follow-btn {
-  color: #1a91da;
-  border: 0.5px solid #1a91da;
+  /* color: #1a91da; */
+  background-color: #fcd70d !important;
+  color: #2e313c;
+  font-size: 1.1rem;
+  /* border: 0.5px solid #1a91da; */
 }
 .unfollow-btn {
-  color: #fff;
-  background-color: #1a91da !important;
+  color: #2e313c;
+  /* background-color: #1a91da !important; */
+  border: 1px solid #fcd70d !important;
 }
 .unfollow-btn:hover {
+  color: #fff;
   background-color: rgb(236, 22, 22) !important;
+  border: 1px solid rgb(236, 22, 22) !important;
 }
 .card-content p {
   text-decoration: underline;
+}
+.profile-desc {
+  margin-bottom: 50px;
 }
 .profile-container {
   display: flex;
@@ -105,14 +121,13 @@ input[type="file"] {
 }
 .profile-container h4 {
   font-size: 1.7rem;
-  font-weight: 900;
+  text-transform: capitalize;
+  font-weight: 600;
 }
-.profile-container h5 {
+/* .profile-container h5 {
   font-size: 1.4rem;
-}
-.profile-container h4:hover {
-  color: #1a91da;
-}
+} */
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -122,27 +137,43 @@ input[type="file"] {
   padding: 20px;
   border-top: 1px solid rgba(219, 219, 219);
 }
-
+#links p {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+#links {
+  position: relative;
+}
+#link:active {
+  content: "";
+  background-color: #fcd70d !important;
+}
 .image-btn {
   font-size: 0.9rem !important;
   color: #1a91da;
-  border: 0.5px solid #1a91da !important;
+  border: 0.5px solid #fcd70d !important;
   margin-bottom: 10px;
   text-transform: none;
+  width: 90px !important;
+  border-radius: 15px !important;
+  padding: -0px;
 }
+
 #links .material-icons {
   font-weight: 500;
 }
 #links .material-icons:hover,
 .logout-btn:hover {
-  color: #1a91da !important;
+  color: #2603ff !important;
 }
 
 .post-btn {
-  background-color: #1a91da !important;
-  color: #fff !important;
+  background-color: #fcd70d !important;
+  color: #2e313c !important;
   padding: 0 20px !important;
-  border: 1px solid #1a91da;
+  border-radius: 15px !important;
+  border: 1px solid #fcd70d;
+
   font-weight: 700;
   text-transform: none;
 }
@@ -225,9 +256,10 @@ input[type="file"] {
   margin-top: -10px;
 }
 .post-btn:hover {
-  background-color: #fff !important;
-  color: #1a91da !important;
-  padding: 0 20px !important;
+  /* background-color: #fff !important;
+  color: #fcd70d !important;
+  padding: 0 20px !important; */
+  border: 1px solid #2e313c;
 }
 .item {
   width: 30%;
@@ -267,7 +299,7 @@ input[type="file"] {
   max-width: 300px;
 }
 .like .material-icons {
-  color: red;
+  color: #2603ff !important;
 }
 .like {
   display: flex;
@@ -289,6 +321,9 @@ input[type="file"] {
   .item {
     width: 100%;
   }
+  .profile-desc {
+    margin-bottom: 10px;
+  }
   .post-container {
     flex-direction: column;
     justify-content: center;
@@ -304,6 +339,7 @@ input[type="file"] {
   }
   .update-pic {
     font-size: 0.8rem;
+    width: 50px !important;
   }
 }
 @media screen and (max-width: 750px) {

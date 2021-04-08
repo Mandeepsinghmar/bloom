@@ -127,7 +127,7 @@ function Explore() {
   };
 
   return (
-    <div className="home" style={{ marginTop: "70px" }}>
+    <div className="home" style={{ marginTop: "80px" }}>
       {data ? (
         data.map((post) => (
           <div

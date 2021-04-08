@@ -99,7 +99,7 @@ function Profile() {
                     color: "blue",
                     borderRadius: "30px",
                     textTransform: "none",
-                    border: "1px solid rgba(219,219,219)",
+                    border: "1px solid #fcd70d",
                   }}
                 >
                   <span style={{ textDecoration: "none" }}>Update Pic</span>
@@ -121,19 +121,12 @@ function Profile() {
                 </div>
               </div>
             </div>
-            <div>
-              <div
-              // style={{
-              //   display: "flex",
-              //   justifyContent: "space-between",
-              //   alignItems: "center",
-              //   gap: "4rem",
-              // }}
-              >
+            <div className="profile-desc">
+              <div>
                 <h4>{state.name}</h4>
-                <h4 style={{ fontSize: "1.4rem", fontWeight: "400" }}>
+                <h5 style={{ fontSize: "1.4rem", fontWeight: "400" }}>
                   {state.email}
-                </h4>
+                </h5>
               </div>
 
               <div
