@@ -8,7 +8,7 @@ import MyPosts from "../screens/MyPosts";
 function Profile() {
   const [myPosts, setMyPosts] = useState();
   const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const { state, dispatch } = useContext(UserContext);
   console.log(state);
@@ -22,7 +22,7 @@ function Profile() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setLoading(true);
+        // setLoading(true);
         setMyPosts(data.mypost);
       });
     return () => {
@@ -93,7 +93,7 @@ function Profile() {
                 src={state.pic}
                 style={{ width: "120px", height: "120px", borderRadius: "50%" }}
               />
-              {!loading && <div>loading..</div>}
+              {/* {!loading && <div>loading..</div>} */}
               <div className="file-field input-field">
                 <div
                   className="btn   white "
