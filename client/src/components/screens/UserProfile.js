@@ -117,9 +117,9 @@ function UserProfile() {
                 className="username-btn"
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
+                  // justifyContent: "space-between",
                   alignItems: "center",
-                  gap: "2rem",
+                  gap: "1.5rem",
                 }}
               >
                 <h4>{userProfile.user.name}</h4>
