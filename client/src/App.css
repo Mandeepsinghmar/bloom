@@ -350,7 +350,7 @@ input[type="file"] {
     align-items: center;
     gap: 0px;
 
-    height: 190px;
+    height: 228px;
   }
   .pic-content {
     /* flex-direction: row !important; */
