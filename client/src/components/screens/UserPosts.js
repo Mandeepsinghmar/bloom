@@ -1,20 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
 import { UserContext } from "../../App";
+
 import FadeLoader from "react-spinners/FadeLoader";
 import M from "materialize-css";
 import { useHistory } from "react-router";
 
-function MyPosts() {
+function UserPosts() {
   const { state, dispatch } = useContext(UserContext);
 
   const [myPosts, setMyPosts] = useState();
-  console.log(myPosts);
+  const { userid } = useParams();
+  //   if (userPosts) {
+  //     setMyPosts(userPosts);
+  //   }
+  //   console.log(myPosts);
   const history = useHistory();
 
   useEffect(() => {
     const abortCont = new AbortController();
-    fetch("/mypost", {
+    fetch(`/user/${userid}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -22,13 +28,13 @@ function MyPosts() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setMyPosts(data.mypost);
+
+        setMyPosts(data.posts);
       });
     return () => {
       abortCont.abort();
     };
   }, []);
-
   const likePost = (id) => {
     fetch("/like", {
       method: "put",
@@ -347,4 +353,4 @@ function MyPosts() {
   );
 }
 
-export default MyPosts;
+export default UserPosts;

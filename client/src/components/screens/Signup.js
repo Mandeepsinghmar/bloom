@@ -73,7 +73,7 @@ function Signup() {
           });
           return;
         } else {
-          M.toast({ html: data.message, classes: "blue" });
+          M.toast({ html: data.message, classes: " dark blue" });
           history.push("/login");
         }
       })
@@ -94,7 +94,7 @@ function Signup() {
     <div>
       <div className="card-container auth">
         <div className=" card card-content">
-          <h2>Gamer</h2>
+          <h2>Bloom</h2>
           <input
             className="input-style"
             type="text"
@@ -116,34 +116,48 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="file-field input-field pic-input">
+          <div
+            className="file-field input-field"
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              gap: "20px",
+              width: "100%",
+            }}
+          >
             <div
-              className="btn   white image-btn"
+              className="btn   white photo-btn"
               style={{
-                fontSize: "2rem",
-                borderRadius: "30px",
-                border: "1px solid rgba(219,219,219)",
+                borderRadius: "20px",
+                width: "150px",
                 display: "flex",
+
+                border: "1px solid rgba(219,219,219)",
               }}
             >
-              <span style={{ textDecoration: "none" }}>Upload Pic</span>
+              <span style={{ textDecoration: "none" }}>Photo📸</span>
               <input
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
               />
             </div>
-            <div className="file-path-wrapper">
+            <div className="file-path-wrapper" style={{ width: "100%" }}>
               <input
                 className="file-path validate"
+                // placeholder="File-path will shown here"
                 type="text"
                 style={{
+                  fontSize: "0.5rem",
+                  paddingLeft: "10px",
                   fontSize: "1rem",
-                  borderRadius: "20px",
+                  borderRadius: "10px",
                   borderBottom: "1px solid rgba(219,219,219)",
                 }}
               />
             </div>
           </div>
+
           <button
             className="btn waves-effect waves-light  login-btn"
             onClick={() => PostData()}

@@ -127,9 +127,9 @@ function Navbar() {
           // backgroundColor: "white",
 
           display: "flex",
-
+          width: "100%",
           justifyContent: "space-around",
-          gap: "100px",
+          // gap: "100px",
           alignItems: "center",
           paddingBottom: "5px",
           borderRadius: "20px",
@@ -144,8 +144,7 @@ function Navbar() {
           to={state ? "/" : "/login"}
           className="brand-logo"
         >
-          Bl
-          <span style={{ fontSize: "0.9rem" }}>🌸🌸</span>m
+          Bloom
         </Link>
         <ul
           id="links"

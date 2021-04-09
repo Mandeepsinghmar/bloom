@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import FadeLoader from "react-spinners/FadeLoader";
 import BeatLoader from "react-spinners/BeatLoader";
+import MyPosts from "../screens/MyPosts";
 
 function Profile() {
   const [myPosts, setMyPosts] = useState();
   const [image, setImage] = useState("");
 
   const { state, dispatch } = useContext(UserContext);
-
+  console.log(state);
   useEffect(() => {
     const abortCont = new AbortController();
     fetch("/mypost", {
@@ -95,11 +96,13 @@ function Profile() {
                 <div
                   className="btn   white "
                   style={{
-                    fontSize: "1rem",
+                    fontSize: "0.8rem",
+                    fontWeight: "600",
                     color: "blue",
-                    borderRadius: "30px",
+                    borderRadius: "15px",
                     textTransform: "none",
                     border: "1px solid #fcd70d",
+                    width: "100px",
                   }}
                 >
                   <span style={{ textDecoration: "none" }}>Update Pic</span>
@@ -147,9 +150,25 @@ function Profile() {
               </div>
             </div>
           </div>
-
+          <div
+            style={
+              {
+                // display: "flex",
+                // flexDirection: "row",
+                // justifyContent: "center",
+                // alignItems: "center",
+                // maxWidth: "900px",
+                // margin: "auto",
+              }
+            }
+            className="profile-posts"
+          >
+            {" "}
+            <MyPosts />
+          </div>
+          {/* <MyPosts /> */}
           <div className="gallery">
-            {myPosts ? (
+            {/* {myPosts ? (
               myPosts.map((myPost) => (
                 <img className="item" src={myPost.imageUrl} />
               ))
@@ -171,7 +190,7 @@ function Profile() {
                   margin={2}
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       ) : (

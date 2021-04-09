@@ -212,8 +212,8 @@ function Home() {
             style={{
               backgroundColor: "white",
               fontSize: "1rem",
-              borderRadius: "20px",
-              color: "blue",
+              borderRadius: "10px",
+
               cursor: "pointer",
               paddingLeft: "10px",
               border: "1px solid rgba(219,219,219)",

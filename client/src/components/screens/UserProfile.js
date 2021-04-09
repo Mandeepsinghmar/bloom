@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 import FadeLoader from "react-spinners/FadeLoader";
+import UserPosts from "../screens/UserPosts";
 
 function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -118,7 +119,7 @@ function UserProfile() {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  gap: "4rem",
+                  gap: "2rem",
                 }}
               >
                 <h4>{userProfile.user.name}</h4>
@@ -154,11 +155,14 @@ function UserProfile() {
               </div>
             </div>
           </div>
+          <div className="profile-posts">
+            <UserPosts />
+          </div>
 
           <div className="gallery">
-            {userProfile.posts.map((myPost) => (
+            {/* {userProfile.posts.map((myPost) => (
               <img className="item" src={myPost.imageUrl} />
-            ))}
+            ))} */}
           </div>
         </div>
       ) : (
