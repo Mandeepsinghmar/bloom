@@ -130,6 +130,12 @@ input[type="file"] {
 .profile-posts {
   border-top: 1px solid rgba(219, 219, 219);
 }
+.profile:hover {
+  text-decoration: underline;
+}
+.profile p:hover {
+  color: #2603ff !important;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;

@@ -204,6 +204,34 @@ function Home() {
             alignItems: "flex-start",
           }}
         >
+          {" "}
+          <Link
+            className="profile"
+            to="/profile"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              paddingBottom: "10px",
+              gap: "5px",
+            }}
+          >
+            {state && (
+              <img
+                style={{
+                  width: "25px",
+                  height: "25px",
+
+                  borderRadius: "50%",
+                }}
+                src={state.pic}
+                alt=""
+              />
+            )}
+            {/* <i className="material-icons">account_box</i> */}
+            {state && (
+              <p style={{ textTransform: "capitalize" }}>{state.name}</p>
+            )}
+          </Link>
           <input
             type="text"
             placeholder="Caption..."
