@@ -44,7 +44,11 @@ function Login() {
   return (
     <div className="card-container auth">
       <div className=" card card-content ">
-        <h2>Gamer</h2>
+        <h2>
+          {" "}
+          Bl
+          <span style={{ fontSize: "0.9rem" }}>🌸🌸</span>m
+        </h2>
         <input
           className="input-style"
           type="text"

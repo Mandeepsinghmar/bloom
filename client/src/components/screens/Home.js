@@ -213,7 +213,7 @@ function Home() {
               backgroundColor: "white",
               fontSize: "1rem",
               borderRadius: "20px",
-
+              color: "blue",
               cursor: "pointer",
               paddingLeft: "10px",
               border: "1px solid rgba(219,219,219)",
@@ -237,7 +237,7 @@ function Home() {
                 border: "1px solid rgba(219,219,219)",
               }}
             >
-              <span style={{ textDecoration: "none" }}>Image</span>
+              <span style={{ textDecoration: "none" }}>Image📸</span>
               <input
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
@@ -266,10 +266,11 @@ function Home() {
             style={{
               fontSize: "18px",
               borderRadius: "20px",
+              display: "flex",
             }}
             onClick={() => handlePost()}
           >
-            Post
+            Post <span style={{ fontSize: "0.8rem" }}> 🚀</span>
           </button>
         </div>
       </div>
@@ -335,13 +336,17 @@ function Home() {
               <div>
                 {" "}
                 {post.postedBy._id == state._id && (
-                  <i
+                  <span
                     className="material-icons"
-                    style={{ cursor: "pointer", float: "right" }}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "1.1rem",
+                      float: "right",
+                    }}
                     onClick={() => deletePost(post._id)}
                   >
-                    delete
-                  </i>
+                    ❌
+                  </span>
                 )}
               </div>
             </div>
@@ -472,7 +477,7 @@ function Home() {
                 <input
                   className="comment"
                   type="text"
-                  placeholder="Add a comment.."
+                  placeholder=" Add a comment.."
                   style={{
                     fontSize: "1rem",
                     paddingLeft: "10px",

@@ -9,9 +9,9 @@ function Navbar() {
     if (state) {
       return [
         <li>
-          <a
+          <Link
             className="link"
-            href="/"
+            to="/"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -23,7 +23,7 @@ function Navbar() {
             {" "}
             <i className="material-icons">home</i>
             <p>Home</p>
-          </a>
+          </Link>
         </li>,
         <li>
           <Link
@@ -135,8 +135,17 @@ function Navbar() {
           borderRadius: "20px",
         }}
       >
-        <Link to={state ? "/" : "/login"} className="brand-logo">
-          Gamer
+        <Link
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          to={state ? "/" : "/login"}
+          className="brand-logo"
+        >
+          Bl
+          <span style={{ fontSize: "0.9rem" }}>🌸🌸</span>m
         </Link>
         <ul
           id="links"

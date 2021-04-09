@@ -189,13 +189,17 @@ function MyPosts() {
                 <div>
                   {" "}
                   {post.postedBy._id == state._id && (
-                    <i
+                    <span
                       className="material-icons"
-                      style={{ cursor: "pointer", float: "right" }}
+                      style={{
+                        cursor: "pointer",
+                        float: "right",
+                        fontSize: "1.1rem",
+                      }}
                       onClick={() => deletePost(post._id)}
                     >
-                      delete
-                    </i>
+                      ❌
+                    </span>
                   )}
                 </div>
               </div>
