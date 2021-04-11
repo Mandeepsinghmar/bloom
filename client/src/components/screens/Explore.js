@@ -222,12 +222,11 @@ function Explore() {
               ) : (
                 <div className="unlike">
                   <i
-                    className="material-icons"
                     onClick={() => likePost(post._id)}
                     style={{ cursor: "pointer" }}
-                  >
-                    favorite_border
-                  </i>
+                    class="bx bxs-heart-circle"
+                  ></i>
+
                   <span>{post.likes.length} like</span>
                 </div>
               )}

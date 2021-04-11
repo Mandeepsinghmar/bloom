@@ -130,7 +130,7 @@ function Profile() {
               <div>
                 <h4>{state.name}</h4>
                 <h5 style={{ fontSize: "1.4rem", fontWeight: "400" }}>
-                  {state.email}
+                  {/* {state.email} */}
                 </h5>
               </div>
 
