@@ -210,21 +210,18 @@ function Explore() {
               {post.likes.includes(state._id) ? (
                 <div className="like">
                   <i
-                    className="material-icons"
-                    style={{ fontSize: "2rem" }}
+                    className="bx bxs-heart like-unlike-icons"
                     onClick={() => unLikePost(post._id)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    favorite
-                  </i>
+                    style={{ cursor: "pointer", fontSize: "2rem" }}
+                  ></i>
                   <span>{post.likes.length} like</span>
                 </div>
               ) : (
                 <div className="unlike">
                   <i
+                    className="bx bxs-heart like-unlike-icon"
                     onClick={() => likePost(post._id)}
-                    style={{ cursor: "pointer" }}
-                    class="bx bxs-heart-circle"
+                    style={{ cursor: "pointer", fontSize: "2rem" }}
                   ></i>
 
                   <span>{post.likes.length} like</span>
