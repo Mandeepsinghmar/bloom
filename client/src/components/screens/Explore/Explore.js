@@ -14,21 +14,28 @@ function Explore() {
     const signal = abortCont.signal;
     fetch(
       "/allpost",
-      { signal },
+
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
-      }
+      },
+      { signal }
     )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setData(data);
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        } else {
+          console.log(err.message);
+        }
       });
     return () => {
       abortCont.abort();
-      console.log("unsubscribed compon");
     };
   }, []);
 
