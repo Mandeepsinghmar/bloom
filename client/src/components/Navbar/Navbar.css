@@ -1,0 +1,79 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  margin: auto;
+  padding: 5px 50px;
+  color: #fff;
+  background-color: white;
+  border-bottom: 0.5px solid rgba(219, 219, 219);
+}
+
+.navbar-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 5px;
+  border-radius: 20px;
+}
+.brand-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Press Start 2P", cursive;
+  color: #000 !important;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.brand-logo:hover {
+  text-decoration: none;
+}
+.links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 25px;
+  opacity: 0.9;
+  position: relative;
+}
+.links p {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+#links .material-icons {
+  font-weight: 500;
+}
+#links .material-icons:hover,
+.logout-btn:hover {
+  color: #2603ff !important;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logout-btn img {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+
+.profile img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.profile p {
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 470px) {
+  .navbar {
+    padding: 10px;
+  }
+}
