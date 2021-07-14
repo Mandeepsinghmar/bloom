@@ -9,20 +9,20 @@ function Navbar() {
   const renderList = () => {
     if (state) {
       return [
-        <li>
+        <li key="home">
           <Link className="link" to="/">
             <i className="material-icons">home</i>
             <p>Home</p>
           </Link>
         </li>,
-        <li>
+        <li key="explore">
           <Link to="/explore" className="link">
             <i className="material-icons">explore</i>
             <p>Explore</p>
           </Link>
         </li>,
         ,
-        <li>
+        <li key="logout">
           <p
             className="logout-btn link"
             onClick={() => {
@@ -38,7 +38,7 @@ function Navbar() {
             <p>Logout</p>
           </p>
         </li>,
-        <li>
+        <li key="profile">
           <Link className="profile link" to="/profile">
             {state && <img src={state.pic} alt="" />}
             {state && <p>{state.name}</p>}
@@ -47,12 +47,12 @@ function Navbar() {
       ];
     } else {
       return [
-        <li>
+        <li key="login">
           <Link className="signin-btn" to="/login">
             Login
           </Link>
         </li>,
-        <li>
+        <li key="signup">
           <Link className="signup-btn" to="/signup">
             Signup
           </Link>

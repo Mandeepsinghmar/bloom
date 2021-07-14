@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FadeLoader from "react-spinners/FadeLoader";
+import "./style.css";
 
 const Post = ({ data, state, setData }) => {
   const [comment, setComment] = useState("");
-
-  useEffect(() => {
-    return () => {};
-  }, []);
+  const [showComment, setShowComment] = useState(false);
 
   const likePost = (id) => {
     fetch("/like", {
@@ -113,40 +111,11 @@ const Post = ({ data, state, setData }) => {
       <div className="home" style={{ marginTop: "70px" }}>
         {data ? (
           data.map((post) => (
-            <div
-              className=" home-card"
-              key={post._id}
-              style={{ border: "0.5px solid rgba(219,219,219)" }}
-            >
-              <div
-                style={{
-                  padding: "0px 10px ",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  backgroundColor: "#fff",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "6px",
-                    gap: "8px",
-                  }}
-                >
+            <div className=" post-card-container" key={post._id}>
+              <div className="post-card">
+                <div className="person-profile">
                   <Link
                     className="home-username"
-                    style={{
-                      fontSize: "1.2rem",
-                      textTransform: "lowercase",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "6px",
-                      gap: "8px",
-                    }}
                     to={
                       post.postedBy._id !== state._id
                         ? "/profile/" + post.postedBy._id
@@ -154,16 +123,7 @@ const Post = ({ data, state, setData }) => {
                     }
                   >
                     {" "}
-                    <img
-                      src={post.postedBy.pic}
-                      alt=""
-                      style={{
-                        width: "35px",
-                        height: "35px",
-
-                        borderRadius: "50%",
-                      }}
-                    />
+                    <img src={post.postedBy.pic} alt={post.postedBy.name} />
                     {post.postedBy.name}
                   </Link>
                 </div>
@@ -186,50 +146,75 @@ const Post = ({ data, state, setData }) => {
                 <img src={post.imageUrl} />
               </div>
               <div className="card-description">
-                {post.likes.includes(state._id) ? (
-                  <div className="like">
-                    <i
-                      className="material-icons"
-                      style={{ fontSize: "2rem" }}
-                      onClick={() => unLikePost(post._id)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      favorite
-                    </i>
-                    <span>{post.likes.length} like</span>
-                  </div>
-                ) : (
-                  <div className="unlike">
-                    <i
-                      className="material-icons"
-                      onClick={() => likePost(post._id)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      favorite_border
-                    </i>
-                    <span>{post.likes.length} like</span>
-                  </div>
-                )}
-
-                {/* <span>{post.likes.length}Like</span> */}
                 <div
                   style={{
-                    fontSize: "1rem",
-                    padding: "0px 10px",
-                    margin: "0px",
-                    lineHeight: "1.4",
-                    paddingBottom: "3px",
+                    display: "flex",
+                    gap: "10px",
                   }}
                 >
-                  <Link
-                    className="home-username"
-                    className="postedby"
+                  {post.likes.includes(state._id) ? (
+                    <div className="like">
+                      <i
+                        className="bx bxs-heart"
+                        style={{
+                          fontSize: "2rem",
+                          cursor: "pointer",
+                          color: "red",
+                        }}
+                        onClick={() => unLikePost(post._id)}
+                      ></i>
+                      <span>
+                        {post.likes.length}{" "}
+                        {post.likes.length === 1 || 0 ? "like" : "likes"}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="unlike">
+                      <i
+                        className="bx bx-heart"
+                        style={{
+                          fontSize: "2rem",
+                          cursor: "pointer",
+                          color: "black",
+                        }}
+                        onClick={() => likePost(post._id)}
+                      ></i>
+
+                      <span>
+                        {post.likes.length}{" "}
+                        {post.likes.length === 0 || 1 ? "like" : "likes"}
+                      </span>
+                    </div>
+                  )}
+
+                  <div
+                    onClick={() => setShowComment(!showComment)}
                     style={{
-                      fontWeight: "600",
-                      marginRight: "4px",
-                      overflow: "hidden",
-                      fontSize: "0.9rem",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "5px",
+                      marginTop: "5px",
+                      cursor: "pointer",
                     }}
+                  >
+                    <i
+                      className="bx bx-comment"
+                      style={{
+                        fontSize: "1.8rem",
+                        color: "black",
+                      }}
+                    ></i>
+                    <span>
+                      {" "}
+                      {post.comments.length}{" "}
+                      {post.comments.length === 1 ? "comment" : "comments"}
+                    </span>
+                  </div>
+                </div>
+                <div className="postedby" style={{ padding: "6px" }}>
+                  <Link
+                    className="postedby-link"
                     to={
                       post.postedBy._id !== state._id
                         ? "/profile/" + post.postedBy._id
@@ -242,58 +227,23 @@ const Post = ({ data, state, setData }) => {
 
                   <p style={{ display: "inline" }}>{post.caption}</p>
                 </div>
-                {post.comments.map((comment) => (
-                  <div
-                    key={comment._id}
-                    style={{
-                      margin: "0px",
-                      padding: "2px 10px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "3px",
-                    }}
-                  >
-                    <Link
-                      className="home-username"
-                      style={{
-                        fontSize: "1rem",
-                        textTransform: "lowercase",
-                        display: "flex",
-                        alignItems: "center",
-
-                        gap: "8px",
-                      }}
-                      to={
-                        comment.postedBy._id !== state._id
-                          ? "/profile/" + comment.postedBy._id
-                          : "/profile"
-                      }
-                    >
-                      {" "}
-                      <img
-                        src={comment.postedBy.pic}
-                        alt=""
-                        style={{
-                          width: "24px",
-                          height: "24px",
-
-                          borderRadius: "50%",
-                        }}
-                      />
-                      <p
-                        style={{
-                          fontSize: "0.9rem",
-                          fontWeight: "600",
-                          overflow: "hidden",
-                        }}
+                {showComment &&
+                  post.comments.map((comment) => (
+                    <div key={comment._id} className="comment">
+                      <Link
+                        className="comment-postedby"
+                        to={
+                          comment.postedBy._id !== state._id
+                            ? "/profile/" + comment.postedBy._id
+                            : "/profile"
+                        }
                       >
-                        {" "}
-                        {comment.postedBy.name}
-                      </p>
-                    </Link>
-                    <div style={{ fontSize: "1rem" }}> {comment.text}</div>
-                  </div>
-                ))}
+                        <img src={comment.postedBy.pic} alt="" />
+                        <p>{comment.postedBy.name}</p>
+                      </Link>
+                      <div style={{ fontSize: "1rem" }}> {comment.text}</div>
+                    </div>
+                  ))}
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -307,7 +257,7 @@ const Post = ({ data, state, setData }) => {
                   }}
                 >
                   <input
-                    className="comment"
+                    className="comment-input"
                     type="text"
                     placeholder="Add a comment.."
                     style={{
@@ -315,43 +265,14 @@ const Post = ({ data, state, setData }) => {
                       paddingLeft: "10px",
                       border: "none",
                     }}
-                    // value={comment}
                     onChange={(e) => setComment(e.target.value)}
                   />
-
-                  {/* 
-                <button
-                  style={{
-                    backgroundColor: "white",
-                    border: "none",
-                    marginRight: "10px",
-                    cursor: "pointer",
-                    color: "blue",
-                    fontWeight: "600",
-                    marginBottom: "15px",
-                  }}
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    makeComment(e.target.value, post._id);
-                  }}
-                >
-                  Post
-                </button> */}
                 </form>
               </div>
             </div>
           ))
         ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-
-              margin: "250px auto",
-            }}
-          >
+          <div className="loader">
             <FadeLoader
               color="#1a91da"
               height={10}
