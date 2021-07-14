@@ -20,10 +20,6 @@ body {
   background-color: #ecf0f3;
 }
 
-.card-content h2 {
-  font-family: "Press Start 2P", cursive;
-}
-
 .home-card {
   transition: 0.3s;
   max-width: 400px;
@@ -35,14 +31,6 @@ body {
   width: 100%;
 }
 
-.input-field input[type="text"]:focus {
-  border-bottom: 1px solid rgb(35, 47, 221) !important;
-  box-shadow: 0 1px 0 0 rgb(35, 47, 221) !important;
-}
-.input-field input[type="password"]:focus {
-  border-bottom: 1px solid rgb(35, 47, 221) !important;
-  box-shadow: 0 1px 0 0 rgb(35, 47, 221) !important;
-}
 .comment:focus {
   border-bottom: none !important;
   box-shadow: none !important;
@@ -85,9 +73,7 @@ input[type="file"] {
   background-color: rgb(236, 22, 22) !important;
   border: 1px solid rgb(236, 22, 22) !important;
 }
-.card-content p {
-  text-decoration: underline;
-}
+
 .profile-desc {
   margin-bottom: 50px;
 }
@@ -135,15 +121,6 @@ input[type="file"] {
   width: 120px !important;
   border-radius: 15px !important;
 }
-.photo-btn {
-  font-size: 0.9rem !important;
-  color: #1a91da;
-  border: 0.5px solid #fcd70d !important;
-  margin-bottom: 10px;
-  text-transform: none;
-  width: 130px !important;
-  border-radius: 15px !important;
-}
 
 .post-btn {
   background-color: #fcd70d !important;
@@ -154,64 +131,6 @@ input[type="file"] {
 
   font-weight: 700;
   text-transform: none;
-}
-.login-btn {
-  width: 100%;
-  margin-top: 10px;
-  background-color: #2603ff !important;
-  font-weight: 600;
-  text-decoration: none;
-  text-transform: none;
-  border: 1px solid #2603ff;
-  border-radius: 10px;
-  padding: 0px 25px;
-
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-.login-btn:hover {
-  background-color: #fff !important;
-  font-weight: 600;
-  color: #2603ff;
-  text-transform: none;
-}
-.input-style {
-  border: 1px solid rgba(219, 219, 219) !important;
-  border-radius: 10px !important;
-  padding-left: 10px !important;
-  font-size: 1rem !important;
-}
-.signin-btn {
-  background-color: #fff;
-
-  text-decoration: none;
-  text-transform: none;
-  border: 1px solid #2603ff;
-  border-radius: 10px;
-  padding: 4px 10px;
-  color: #2603ff !important;
-  font-size: 1.2rem;
-}
-
-.signin-btn:hover {
-  border: 1px solid #2603ff;
-  background-color: #2603ff;
-  color: #fff !important;
-}
-.signup-btn {
-  background-color: #2603ff;
-
-  text-decoration: none;
-  text-transform: none;
-  border: 1px solid #2603ff;
-  border-radius: 10px;
-  padding: 4px 10px;
-  color: #fff !important;
-  font-size: 1.2rem;
-}
-.signup-btn:hover {
-  background-color: #fff;
-  color: #2603ff !important;
 }
 
 .post-btn:hover {

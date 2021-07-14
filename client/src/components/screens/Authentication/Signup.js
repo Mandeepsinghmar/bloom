@@ -115,44 +115,27 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div
-            className="file-field input-field"
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              gap: "20px",
-              width: "100%",
-            }}
-          >
-            <div
-              className="btn   white photo-btn"
-              style={{
-                borderRadius: "20px",
-                width: "150px",
-                display: "flex",
-
-                border: "1px solid rgba(219,219,219)",
-              }}
-            >
+          <div className="file-field input-field">
+            <div className="btn   white photo-btn">
               <span style={{ textDecoration: "none" }}>Photo📸</span>
               <input
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
               />
             </div>
-            <div className="file-path-wrapper" style={{ width: "100%" }}>
+            <div
+              className="file-path-wrapper file-path-name"
+              style={{ width: "100%" }}
+            >
               <input
-                className="file-path validate"
-                // placeholder="File-path will shown here"
-                type="text"
+                className="file-path validate path-name"
                 style={{
-                  fontSize: "0.5rem",
-                  paddingLeft: "10px",
+                  borderBottom: "1px solid rgba(219, 219, 219)",
                   fontSize: "1rem",
+                  paddingLeft: "10px",
                   borderRadius: "10px",
-                  borderBottom: "1px solid rgba(219,219,219)",
                 }}
+                type="text"
               />
             </div>
           </div>
