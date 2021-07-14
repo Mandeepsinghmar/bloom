@@ -12,14 +12,17 @@
 a {
   color: #000 !important;
 }
-.home-username:hover {
-  text-decoration: underline;
-}
+
 .app,
 body {
   background-color: #ecf0f3;
 }
-
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
 .home-card {
   transition: 0.3s;
   max-width: 400px;
@@ -27,73 +30,6 @@ body {
   margin-top: 40px;
 }
 
-.card-image img {
-  width: 100%;
-}
-
-.comment:focus {
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
-.createpost input[type="text"]:focus,
-input[type="file"] {
-  border-bottom: 1px solid rgba(219, 219, 219) !important;
-  box-shadow: 0 1px 0 0 rgba(219, 219, 219) !important;
-}
-.createpost input[type="file"] :focus {
-  border-bottom: 1px solid rgba(219, 219, 219) !important;
-  box-shadow: 0 1px 0 0 rgba(219, 219, 219) !important;
-}
-
-.postedby:hover {
-  text-decoration: underline;
-}
-
-.f-u-btn {
-  text-transform: none !important;
-  cursor: pointer;
-  margin-top: 15px;
-  border-radius: 20px;
-  padding: 0px 20px;
-  font-weight: 700;
-  transition: 0.2s ease-in-out;
-}
-
-.follow-btn {
-  background-color: #fcd70d !important;
-  color: #2e313c;
-  font-size: 1.1rem;
-}
-.unfollow-btn {
-  color: #2e313c;
-  border: 1px solid #fcd70d !important;
-}
-.unfollow-btn:hover {
-  color: #fff;
-  background-color: rgb(236, 22, 22) !important;
-  border: 1px solid rgb(236, 22, 22) !important;
-}
-
-.profile-desc {
-  margin-bottom: 50px;
-}
-.profile-container {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 10px auto !important;
-  align-items: center;
-  max-width: 600px;
-  padding: 10px !important;
-  width: 100%;
-}
-.profile-container h4 {
-  font-size: 1.7rem;
-  text-transform: capitalize;
-  font-weight: 600;
-}
-/* .profile-container h5 {
-  font-size: 1.4rem;
-} */
 .profile-posts {
   border-top: 1px solid rgba(219, 219, 219);
 }
@@ -122,41 +58,9 @@ input[type="file"] {
   border-radius: 15px !important;
 }
 
-.post-btn {
-  background-color: #fcd70d !important;
-  color: #2e313c !important;
-  padding: 0 10px !important;
-  border-radius: 15px !important;
-  border: 1px solid #fcd70d;
-
-  font-weight: 700;
-  text-transform: none;
-}
-
-.post-btn:hover {
-  border: 1px solid #2e313c;
-}
 .item {
   width: 30%;
   margin: 4px;
-}
-.home-card {
-  max-width: 500px;
-  height: max-content;
-  margin: 26px auto;
-}
-.post-container {
-  display: flex;
-  background-color: #fff;
-  justify-content: space-around;
-  gap: 50px;
-  align-items: center;
-  max-width: 500px;
-  margin: auto;
-  padding: 20px;
-
-  border-radius: 10px;
-  min-height: 120px;
 }
 
 #toast-container {
@@ -167,34 +71,7 @@ input[type="file"] {
   left: auto !important;
   bottom: 60px !important;
 }
-.password-length {
-  font-size: 0.9rem;
 
-  background-color: #f44336 !important;
-  max-width: 300px;
-}
-.like .like-icon {
-  color: red !important;
-}
-.unlike-icon {
-  color: black;
-}
-.like {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 5px;
-  padding-left: 10px;
-  gap: 4px;
-}
-.unlike {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 5px;
-  padding-left: 10px;
-  gap: 4px;
-}
 @media screen and (max-width: 600px) {
   .item {
     width: 100%;
@@ -210,17 +87,6 @@ input[type="file"] {
     gap: 0px;
 
     height: 228px;
-  }
-  .pic-content {
-    margin-bottom: -10px;
-    align-items: center;
-  }
-  .username-btn {
-    gap: 0px !important;
-  }
-  .update-pic {
-    font-size: 0.8rem;
-    max-width: 20px !important;
   }
 }
 @media screen and (max-width: 750px) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css";
 import { useHistory } from "react-router";
+import "./style.css";
 
 const CreatePost = () => {
   const [caption, setCaption] = useState("");
@@ -57,58 +58,23 @@ const CreatePost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.url);
         setImageUrl(data.url);
       })
       .catch((err) => console.log(err));
   };
   return (
-    <div>
-      <div className="post-container input-field">
-        <div
-          className=" createpost "
-          style={{
-            width: "100%",
-
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-          }}
-        >
+    <div className="post-container">
+      <div className=" input-field">
+        <div className=" createpost ">
           <input
             type="text"
             placeholder="Caption..."
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            style={{
-              backgroundColor: "white",
-              fontSize: "1rem",
-              borderRadius: "20px",
-
-              cursor: "pointer",
-              paddingLeft: "10px",
-              border: "1px solid rgba(219,219,219)",
-            }}
+            className="caption"
           />
-          <div
-            className="file-field input-field"
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              // gap: "20px",
-              width: "100%",
-            }}
-          >
-            <div
-              className="btn   white image-btn"
-              style={{
-                borderRadius: "20px",
-                width: "150px",
-                border: "1px solid rgba(219,219,219)",
-              }}
-            >
+          <div className="file-field input-field post-image">
+            <div className="btn   white image-btn">
               <span style={{ textDecoration: "none" }}>Image</span>
               <input
                 type="file"
@@ -118,7 +84,6 @@ const CreatePost = () => {
             <div className="file-path-wrapper" style={{ width: "100%" }}>
               <input
                 className="file-path validate"
-                // placeholder="File-path will shown here"
                 type="text"
                 style={{
                   fontSize: "0.5rem",
@@ -135,10 +100,6 @@ const CreatePost = () => {
         <div>
           <button
             className="btn  waves-effect waves-light  post-btn"
-            style={{
-              fontSize: "18px",
-              borderRadius: "20px",
-            }}
             onClick={() => handlePost()}
           >
             Post
