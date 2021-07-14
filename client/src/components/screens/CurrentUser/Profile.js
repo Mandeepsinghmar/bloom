@@ -7,13 +7,16 @@ function Profile() {
   const [myPosts, setMyPosts] = useState();
   const [image, setImage] = useState("");
   const { state, dispatch } = useContext(UserContext);
-  console.log(state);
   useEffect(() => {
-    const abortCont = new AbortController();
+    let abortCont = new AbortController();
+    // let mounted = true;
+
     fetch(
       "/mypost",
-      { signal: abortCont.signal },
+
       {
+        signal: abortCont.signal,
+
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
@@ -21,16 +24,26 @@ function Profile() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        // setLoading(true);
+        // if (mounted) {
         setMyPosts(data.mypost);
+        // }
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        } else {
+          console.log(err.message);
+        }
       });
     return () => {
       abortCont.abort();
+      // mounted = false;
     };
   }, []);
 
   useEffect(() => {
+    let abortCont = new AbortController();
+
     if (image) {
       const data = new FormData();
       data.append("file", image);
@@ -38,8 +51,8 @@ function Profile() {
       data.append("cloud_name", "monu1");
 
       fetch("	https://api.cloudinary.com/v1_1/monu1/image/upload", {
+        signal: abortCont.signal,
         method: "post",
-
         body: data,
       })
         .then((res) => res.json())
@@ -56,18 +69,23 @@ function Profile() {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
               localStorage.setItem(
                 "user",
                 JSON.stringify({ ...state, pic: result.pic })
               );
               dispatch({ type: "UPDATEPIC", payload: result.pic });
-              //window.location.reload()
             });
         })
         .catch((err) => {
-          console.log(err);
+          if (err.name === "AbortError") {
+            console.log("fetch aborted");
+          } else {
+            console.log(err.message);
+          }
         });
+      return () => {
+        abortCont.abort();
+      };
     }
   }, [image]);
 
@@ -130,7 +148,16 @@ function Profile() {
                   width: "250px",
                 }}
               >
-                <p>{myPosts && <strong>{myPosts.length}</strong>} posts</p>
+                {myPosts ? (
+                  <p>
+                    <strong>{myPosts.length}</strong> posts
+                  </p>
+                ) : (
+                  <p>
+                    <strong>0</strong> post
+                  </p>
+                )}
+
                 <p>
                   <strong>{state.followers.length}</strong> followers
                 </p>

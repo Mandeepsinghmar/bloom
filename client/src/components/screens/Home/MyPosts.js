@@ -9,19 +9,22 @@ function MyPosts() {
 
   useEffect(() => {
     const abortCont = new AbortController();
-    fetch(
-      "/mypost",
-      // { signal: abortCont.signal },
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-      }
-    )
+    fetch("/mypost", {
+      signal: abortCont.signal,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMyPosts(data.mypost);
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        } else {
+          console.log(err.message);
+        }
       });
     return () => {
       abortCont.abort();
@@ -30,7 +33,7 @@ function MyPosts() {
 
   return (
     <>
-      <Suspense>
+      <Suspense fallback={<div>loading...</div>}>
         <Post data={myPosts} setData={setMyPosts} state={state} />
       </Suspense>
     </>

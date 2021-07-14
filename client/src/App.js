@@ -8,8 +8,8 @@ import {
   useHistory,
 } from "react-router-dom";
 
-import Login from "./components/screens/Login/Login";
-import Signup from "./components/screens/Signup/Signup";
+import Login from "./components/screens/Authentication/Login";
+import Signup from "./components/screens/Authentication/Signup";
 import Profile from "./components/screens/CurrentUser/Profile";
 import UserProfile from "./components/screens/IndividualUser/UserProfile";
 import Home from "./components/screens/Home/Home";

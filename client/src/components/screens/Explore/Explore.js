@@ -7,24 +7,22 @@ import Post from "../Post/Post";
 function Explore() {
   const [data, setData] = useState();
 
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
 
   useEffect(() => {
     const abortCont = new AbortController();
-    const signal = abortCont.signal;
     fetch(
       "/allpost",
 
       {
+        signal: abortCont.signal,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
-      },
-      { signal }
+      }
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setData(data);
       })
       .catch((err) => {

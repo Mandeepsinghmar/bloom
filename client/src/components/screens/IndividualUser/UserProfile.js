@@ -1,38 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { UserContext } from "../../../App";
 import FadeLoader from "react-spinners/FadeLoader";
 import UserPosts from "./UserPosts";
 
 function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
-  const [myPosts, setMyPosts] = useState();
-
   const { state, dispatch } = useContext(UserContext);
   const { userid } = useParams();
   const [showFollow, setShowFollow] = useState(
     state ? !state.following.includes(userid) : true
   );
-
-  console.log(userid);
-  useEffect(() => {
-    const abortCont = new AbortController();
-    fetch(`/user/${userid}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-
-        setUserProfile(data);
-        setMyPosts(data.posts);
-      });
-    return () => {
-      abortCont.abort();
-    };
-  }, []);
 
   const followUser = () => {
     fetch("/follow", {
@@ -159,12 +137,6 @@ function UserProfile() {
           </div>
           <div className="profile-posts">
             <UserPosts />
-          </div>
-
-          <div className="gallery">
-            {/* {userProfile.posts.map((myPost) => (
-              <img className="item" src={myPost.imageUrl} />
-            ))} */}
           </div>
         </div>
       ) : (

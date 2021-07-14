@@ -1,37 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { UserContext } from "../../../App";
-import { useHistory } from "react-router";
 import Post from "../Post/Post";
 
 function UserPosts() {
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
 
   const [myPosts, setMyPosts] = useState();
   const { userid } = useParams();
-  //   if (userPosts) {
-  //     setMyPosts(userPosts);
-  //   }
-  //   console.log(myPosts);
-  const history = useHistory();
 
   useEffect(() => {
     const abortCont = new AbortController();
     fetch(`/user/${userid}`, {
+      signal: abortCont.signal,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         setMyPosts(data.posts);
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        } else {
+          console.log(err.message);
+        }
       });
     return () => {
       abortCont.abort();
     };
   }, []);
+
   const likePost = (id) => {
     fetch("/like", {
       method: "put",

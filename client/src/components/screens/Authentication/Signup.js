@@ -66,8 +66,7 @@ function Signup() {
           )
         ) {
           M.toast({
-            html:
-              "Password should be minimum 8 characters, at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character.",
+            html: "Password should be minimum 8 characters, at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character.",
 
             classes: "password-length",
           });

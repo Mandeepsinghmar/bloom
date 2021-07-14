@@ -5,10 +5,6 @@ import FadeLoader from "react-spinners/FadeLoader";
 const Post = ({ data, state, setData }) => {
   const [comment, setComment] = useState("");
 
-  useEffect(() => {
-    return () => {};
-  }, []);
-
   const likePost = (id) => {
     fetch("/like", {
       method: "put",
