@@ -49,7 +49,6 @@ function UserProfile() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         dispatch({
           type: "UPDATE",
           payload: { following: data.following, followers: data.followers },
@@ -82,7 +81,6 @@ function UserProfile() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         dispatch({
           type: "UPDATE",
           payload: { following: data.following, followers: data.followers },
@@ -134,7 +132,6 @@ function UserProfile() {
                 )}
               </div>
 
-              <h5>{userProfile.user.email}</h5>
               <div className="follower">
                 <p>
                   <strong>{userProfile.posts.length}</strong> posts

@@ -39,12 +39,15 @@
   display: flex;
   justify-content: space-between;
   -moz-window-dragging: 250px;
+  gap: 15px;
 }
 
 .username-btn {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
 }
 
 .f-u-btn {
@@ -71,13 +74,47 @@
   background-color: rgb(236, 22, 22) !important;
   border: 1px solid rgb(236, 22, 22) !important;
 }
-
+.user-image {
+  margin-top: -75px;
+  margin-left: -20px;
+}
+.user-image:hover {
+  opacity: 0.5;
+}
+.camera {
+  position: absolute;
+  right: 50px;
+  bottom: 55px;
+  font-size: 1.5rem;
+}
 @media screen and (max-width: 600px) {
   .pic-content {
     margin-bottom: -10px;
     align-items: center;
   }
-  .username-btn {
-    gap: 0px !important;
+  .user-image {
+    margin-left: -30px;
+    margin-top: -85px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .user-image {
+    margin-left: -50px;
+    margin-top: -85px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .user-image {
+    margin-left: -60px;
+    margin-top: -85px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .user-image {
+    margin-left: -45px;
+    margin-top: -95px;
+  }
+  .profile-container {
+    margin-top: 140px !important;
   }
 }

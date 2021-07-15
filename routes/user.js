@@ -94,4 +94,20 @@ router.put("/updatepic", requireLogin, (req, res) => {
   );
 });
 
+router.put("/updateprofile", requireLogin, (req, res) => {
+  const { name } = req.body;
+
+  User.findByIdAndUpdate(
+    req.user._id,
+    { $set: { name } },
+    { new: true },
+    (err, result) => {
+      if (err) {
+        return res.status(422).json({ error: "profile cannot updated!" });
+      }
+      res.json(result);
+    }
+  );
+});
+
 module.exports = router;

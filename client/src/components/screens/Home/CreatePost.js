@@ -86,7 +86,9 @@ const CreatePost = () => {
           />
           <div className="file-field input-field post-image">
             <div className="btn   white image-btn">
-              <span style={{ textDecoration: "none" }}>Image</span>
+              <span style={{ textDecoration: "none" }}>
+                <i class="bx bxs-camera-plus"></i>
+              </span>
               <input
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}

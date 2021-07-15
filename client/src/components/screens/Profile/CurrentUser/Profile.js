@@ -9,6 +9,9 @@ function Profile() {
   const [myPosts, setMyPosts] = useState();
   const [image, setImage] = useState("");
   const { state, dispatch } = useContext(UserContext);
+  const [toggle, setToggle] = useState(false);
+  const[name,setName] = useState('')
+
   useEffect(() => {
     let abortCont = new AbortController();
     // let mounted = true;
@@ -76,6 +79,7 @@ function Profile() {
                 JSON.stringify({ ...state, pic: result.pic })
               );
               dispatch({ type: "UPDATEPIC", payload: result.pic });
+
               M.toast({
                 html: "Update image done!!",
 
@@ -96,6 +100,33 @@ function Profile() {
     }
   }, [image]);
 
+  const updateProfile = ()=>{
+    fetch("/updateprofile", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        name,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...state, pic: result.pic })
+        );
+        dispatch({ type: "UPDATEPIC", payload: result.pic });
+
+        M.toast({
+          html: "Update image done!!",
+
+          classes: "blue",
+        });
+      });
+  }
+
   const updatePhoto = (file) => {
     setImage(file);
   };
@@ -106,21 +137,30 @@ function Profile() {
         <div className="profile-container-wrapper">
           <div className="profile-container">
             <div className="pic-content">
-              <img src={state.pic} />
               <div className="file-field input-field">
-                <div className="btn   white photo-btn  ">
-                  <span style={{ textDecoration: "none" }}>Update Pic</span>
+                <label>
                   <input
                     type="file"
                     onChange={(e) => updatePhoto(e.target.files[0])}
                   />
-                </div>
+                  <span
+                    onMouseEnter={() => setToggle(true)}
+                    onMouseLeave={() => setToggle(false)}
+                  >
+                    <img
+                      style={{ position: "relative" }}
+                      className="user-image"
+                      src={state.pic}
+                    />
+                    {toggle && <i className="bx bxs-camera camera"></i>}
+                  </span>
+                </label>
               </div>
             </div>
             <div className="profile-desc">
               <div>
+              <input type='text' value={name} onChange={(e)=>setName(e.target.value) } />
                 <h4>{state.name}</h4>
-                <h5>{state.email}</h5>
               </div>
 
               <div className="follower">

@@ -29,7 +29,7 @@ function MyPosts() {
     return () => {
       abortCont.abort();
     };
-  }, []);
+  }, [state]);
 
   return (
     <>
