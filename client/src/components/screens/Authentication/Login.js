@@ -9,6 +9,8 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const PostData = () => {
     fetch("/signin", {
@@ -23,7 +25,9 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data) {
+          setLoading(true);
+        }
         if (data.error) {
           M.toast({ html: data.error, classes: " red" });
         } else {
@@ -53,18 +57,32 @@ function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
         <input
+          style={{ position: "relative" }}
           className="input-style"
-          type="password"
-          placeholder="Enter password"
+          type={showPassword ? "text" : "password"}
+          placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <span
+          onClick={() => setShowPassword(!showPassword)}
+          style={{
+            position: "absolute",
+            cursor: "pointer",
+            right: "30px",
+            top: "218px",
+            fontSize: "1.2rem",
+          }}
+        >
+          <i className="bx bxs-show"></i>
+        </span>
         <button
           className="btn waves-effect waves-light login-btn"
           onClick={() => PostData()}
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
         <p>
           <Link to="signup">Don't have an account?</Link>

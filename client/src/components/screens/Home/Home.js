@@ -41,8 +41,23 @@ function Home() {
       }}
     >
       <CreatePost />
+      {data ? (
+        <Post data={data} setData={setData} state={state} />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "6px 12px",
+            fontSize: "1.4rem",
+            marginTop: "10px",
+          }}
+        >
+          <p>You are not following anyone!</p>
+        </div>
+      )}
 
-      <Post data={data} setData={setData} state={state} />
       <Suspense fallback={<div>Loading</div>}>
         <MyPosts />
       </Suspense>

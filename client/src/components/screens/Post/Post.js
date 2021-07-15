@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FadeLoader from "react-spinners/FadeLoader";
+import InputComment from "./InputComment";
+import RightSideBar from "./RightSideBar";
 import "./style.css";
 
 const Post = ({ data, state, setData }) => {
-  const [comment, setComment] = useState("");
   const [showComment, setShowComment] = useState(false);
 
   const likePost = (id) => {
@@ -57,55 +58,6 @@ const Post = ({ data, state, setData }) => {
       .catch((err) => console.log(err));
   };
 
-  const deletePost = (postid) => {
-    const result = window.confirm("Are you sure want to delete this post?");
-    if (result) {
-      fetch("/deletepost/" + postid, {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          const newData = data.filter((post) => {
-            return post._id !== result._id;
-          });
-          setData(newData);
-        });
-    }
-  };
-  const makeComment = (postId) => {
-    if (comment !== "") {
-      fetch("/comment", {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          postId,
-          text: comment,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          const newData = data.map((post) => {
-            if (post._id == result._id) {
-              return result;
-            } else {
-              return post;
-            }
-          });
-
-          console.log(result);
-          setData(newData);
-        })
-        .catch((err) => console.log(err));
-    }
-  };
   return (
     <div>
       <div className="home" style={{ marginTop: "70px" }}>
@@ -127,19 +79,7 @@ const Post = ({ data, state, setData }) => {
                     {post.postedBy.name}
                   </Link>
                 </div>
-
-                <div>
-                  {" "}
-                  {post.postedBy._id == state._id && (
-                    <i
-                      className="material-icons"
-                      style={{ cursor: "pointer", float: "right" }}
-                      onClick={() => deletePost(post._id)}
-                    >
-                      delete
-                    </i>
-                  )}
-                </div>
+                <RightSideBar postid={post._id} setData={setData} data={data} />
               </div>
 
               <div className="card-image">
@@ -244,30 +184,7 @@ const Post = ({ data, state, setData }) => {
                       <div style={{ fontSize: "1rem" }}> {comment.text}</div>
                     </div>
                   ))}
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-
-                    makeComment(post._id);
-                  }}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    className="comment-input"
-                    type="text"
-                    placeholder="Add a comment.."
-                    style={{
-                      fontSize: "0.9rem",
-                      paddingLeft: "10px",
-                      border: "none",
-                    }}
-                    onChange={(e) => setComment(e.target.value)}
-                  />
-                </form>
+                <InputComment data={data} setData={setData} postId={post._id} />
               </div>
             </div>
           ))
