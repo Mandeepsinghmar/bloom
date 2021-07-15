@@ -33,12 +33,7 @@ body {
 .profile-posts {
   border-top: 1px solid rgba(219, 219, 219);
 }
-.profile:hover {
-  text-decoration: underline;
-}
-.profile p:hover {
-  color: #2603ff !important;
-}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -66,7 +61,7 @@ body {
 #toast-container {
   border-radius: 30px !important;
 
-  font-size: 0.7rem !important;
+  font-size: 1rem !important;
   right: 20px !important;
   left: auto !important;
   bottom: 60px !important;

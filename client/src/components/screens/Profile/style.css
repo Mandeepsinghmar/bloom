@@ -1,0 +1,83 @@
+.profile-container-wrapper {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 100px;
+}
+.pic-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pic-content img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+.profile-desc {
+  margin-bottom: 50px;
+}
+.profile-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px auto !important;
+  align-items: center;
+  max-width: 600px;
+  padding: 10px !important;
+  width: 100%;
+}
+.profile-container h4 {
+  font-size: 1.7rem;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.profile-desc h5 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.follower {
+  display: flex;
+  justify-content: space-between;
+  -moz-window-dragging: 250px;
+}
+
+.username-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.f-u-btn {
+  text-transform: none !important;
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 20px;
+  padding: 0px 20px;
+  font-weight: 700;
+  transition: 0.2s ease-in-out;
+}
+
+.follow-btn {
+  background-color: #fcd70d !important;
+  color: #2e313c;
+  font-size: 1.1rem;
+}
+.unfollow-btn {
+  color: #2e313c;
+  border: 1px solid #fcd70d !important;
+}
+.unfollow-btn:hover {
+  color: #fff;
+  background-color: rgb(236, 22, 22) !important;
+  border: 1px solid rgb(236, 22, 22) !important;
+}
+
+@media screen and (max-width: 600px) {
+  .pic-content {
+    margin-bottom: -10px;
+    align-items: center;
+  }
+  .username-btn {
+    gap: 0px !important;
+  }
+}

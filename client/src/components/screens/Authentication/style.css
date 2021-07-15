@@ -105,9 +105,8 @@
   width: 130px !important;
   border-radius: 15px !important;
 }
-.password-length {
-  font-size: 0.9rem;
-
+.toast {
+  font-size: 1.2rem;
   background-color: #f44336 !important;
   max-width: 300px;
 }

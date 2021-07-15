@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
 
@@ -7,34 +7,8 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState(undefined);
-
-  useEffect(() => {
-    if (imageUrl) {
-      uploadFields();
-    }
-  }, [imageUrl]);
-
-  const uploadPic = () => {
-    const data = new FormData();
-    data.append("file", image);
-    data.append("upload_preset", "insta-clone");
-    data.append("cloud_name", "monu1");
-
-    fetch("	https://api.cloudinary.com/v1_1/monu1/image/upload", {
-      method: "post",
-
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setImageUrl(data.url);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const uploadFields = () => {
     fetch("/signup", {
@@ -46,7 +20,6 @@ function Signup() {
         name,
         password,
         email,
-        pic: imageUrl,
       }),
     })
       .then((res) => res.json())
@@ -68,10 +41,11 @@ function Signup() {
           M.toast({
             html: "Password should be minimum 8 characters, at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character.",
 
-            classes: "password-length",
+            classes: "toast",
           });
           return;
         } else {
+          setLoading(true);
           M.toast({ html: data.message, classes: " dark blue" });
           history.push("/login");
         }
@@ -82,11 +56,7 @@ function Signup() {
   };
 
   const PostData = () => {
-    if (image) {
-      uploadPic();
-    } else {
-      uploadFields();
-    }
+    uploadFields();
   };
 
   return (
@@ -108,43 +78,33 @@ function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+
           <input
+            style={{ position: "relative" }}
             className="input-style"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="file-field input-field">
-            <div className="btn   white photo-btn">
-              <span style={{ textDecoration: "none" }}>Photo📸</span>
-              <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-            </div>
-            <div
-              className="file-path-wrapper file-path-name"
-              style={{ width: "100%" }}
-            >
-              <input
-                className="file-path validate path-name"
-                style={{
-                  borderBottom: "1px solid rgba(219, 219, 219)",
-                  fontSize: "1rem",
-                  paddingLeft: "10px",
-                  borderRadius: "10px",
-                }}
-                type="text"
-              />
-            </div>
-          </div>
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            style={{
+              position: "absolute",
+              cursor: "pointer",
+              right: "30px",
+              top: "240px",
+              fontSize: "1.2rem",
+            }}
+          >
+            <i className="bx bxs-show"></i>
+          </span>
 
           <button
             className="btn waves-effect waves-light  login-btn"
             onClick={() => PostData()}
           >
-            Signup
+            {loading ? "Signing up..." : "Signup"}
           </button>
           <p>
             <Link to="/login">Already have an account?</Link>

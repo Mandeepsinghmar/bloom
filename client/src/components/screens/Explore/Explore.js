@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../../App";
-import FadeLoader from "react-spinners/FadeLoader";
 import Post from "../Post/Post";
 
 function Explore() {

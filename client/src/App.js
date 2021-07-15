@@ -58,15 +58,18 @@ const Routing = () => {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="app">
-      <UserContext.Provider value={{ state, dispatch }}>
-        <Router>
-          <Navbar />
-          <Routing />
-        </Router>
-      </UserContext.Provider>
-    </div>
+    <>
+      <div className="app">
+        <UserContext.Provider value={{ state, dispatch }}>
+          <Router>
+            <Navbar />
+            <Routing />
+          </Router>
+        </UserContext.Provider>
+      </div>
+    </>
   );
 }
 
