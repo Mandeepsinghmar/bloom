@@ -79,7 +79,12 @@ const Post = ({ data, state, setData }) => {
                     {post.postedBy.name}
                   </Link>
                 </div>
-                <RightSideBar postid={post._id} setData={setData} data={data} />
+                <RightSideBar
+                  postedBy={post.postedBy._id}
+                  postid={post._id}
+                  setData={setData}
+                  data={data}
+                />
               </div>
 
               <div className="card-image">

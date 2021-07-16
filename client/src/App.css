@@ -29,7 +29,10 @@ body {
   margin: auto;
   margin-top: 40px;
 }
-
+.blue {
+  color: #fff;
+  background-color: #1a91da;
+}
 .profile-posts {
   border-top: 1px solid rgba(219, 219, 219);
 }
@@ -66,7 +69,9 @@ body {
   left: auto !important;
   bottom: 60px !important;
 }
-
+.blue {
+  background-color: #1a91da !important;
+}
 @media screen and (max-width: 600px) {
   .item {
     width: 100%;
@@ -91,14 +96,17 @@ body {
     bottom: 60px !important;
   }
 }
-@media screen and (max-width: 470px) {
-  .brand-logo {
-    font-size: 1.2rem;
-  }
+@media screen and (max-width: 550px) {
   .profile-container {
     flex-direction: column;
     padding: 10px 20px !important;
   }
+}
+@media screen and (max-width: 470px) {
+  .brand-logo {
+    font-size: 1.2rem;
+  }
+
   .username-btn {
     justify-content: space-evenly !important;
   }

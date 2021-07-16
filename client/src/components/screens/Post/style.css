@@ -37,13 +37,19 @@
   position: absolute;
   right: 5px;
   top: 25px;
-  background-color: black;
-  padding: 5px;
+  background-color: white;
   border-radius: 2px;
+  border: 0.5px solid rgba(219, 219, 219);
 }
 .post-menu-items p {
-  color: white;
+  color: black;
   cursor: pointer;
+  padding: 6px 20px;
+
+  border: 0.5px solid rgba(219, 219, 219);
+}
+.post-menu-items p:hover {
+  background-color: rgba(219, 219, 219);
 }
 .post-menu-icon {
   cursor: pointer;

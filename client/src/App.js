@@ -49,6 +49,7 @@ const Routing = () => {
       <Route path="/profile/:userid">
         <UserProfile />
       </Route>
+
       <Route path="/explore">
         <Explore />
       </Route>

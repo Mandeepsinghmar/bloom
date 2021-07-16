@@ -1,17 +1,42 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css";
-import { useHistory } from "react-router";
 import "./style.css";
+import FadeLoader from "react-spinners/FadeLoader";
 
-const CreatePost = () => {
+const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
 
   const [imageUrl, setImageUrl] = useState("");
-  const history = useHistory();
 
   useEffect(() => {
     const abortCont = new AbortController();
+    fetch(`/post/${postId}`, {
+      signal: abortCont.signal,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCaption(data.caption);
+        setImageUrl(data.imageUrl);
+        setImage(data.imageUrl);
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        } else {
+          console.log(err.message);
+        }
+      });
+    return () => {
+      abortCont.abort();
+    };
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
 
     const data = new FormData();
     data.append("file", image);
@@ -19,29 +44,30 @@ const CreatePost = () => {
     data.append("cloud_name", "monu1");
     if (image) {
       fetch("	https://api.cloudinary.com/v1_1/monu1/image/upload", {
-        signal: abortCont.signal,
         method: "post",
 
         body: data,
       })
         .then((res) => res.json())
         .then((data) => {
-          setImageUrl(data.url);
+          if (isMounted) {
+            setImageUrl(data.url);
+          }
         })
         .catch((err) => console.log(err));
     }
     return () => {
-      abortCont.abort();
+      isMounted = false;
     };
   }, [image]);
 
   const handlePost = () => {
     if (imageUrl) {
       fetch(
-        "/createpost",
+        "/editpost",
 
         {
-          method: "post",
+          method: "put",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -49,6 +75,7 @@ const CreatePost = () => {
           body: JSON.stringify({
             caption,
             imageUrl,
+            postId: postId,
           }),
         }
       )
@@ -56,11 +83,12 @@ const CreatePost = () => {
           res.json();
         })
         .then((data) => {
+          window.location.reload();
+          setShowOptions(false);
           M.toast({
-            html: "Created post successfully",
+            html: "edited post successfully",
             classes: "#43a047 green darken-1 rounded",
           });
-          history.push("/");
         });
     } else {
       M.toast({
@@ -70,17 +98,23 @@ const CreatePost = () => {
     }
   };
   return (
-    <div className="post-container">
+    <div
+      className="post-container"
+      style={{ marginTop: "50px", marginBottom: "50px" }}
+    >
       <div className=" input-field">
         <div className=" createpost ">
-          <input
+          <textarea
             type="text"
             placeholder="Caption..."
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             className="caption"
             style={{
+              border: "none",
               borderBottom: "1px solid rgba(219,219,219)",
+              cursor: "revert",
+              outline: "none",
             }}
           />
           <div className="file-field input-field post-image">
@@ -98,18 +132,19 @@ const CreatePost = () => {
                 onChange={(e) => setImage(e.target.files[0])}
               />
             </div>
-            <div className="file-path-wrapper" style={{ width: "100%" }}>
-              <input
-                className="file-path validate"
-                type="text"
-                style={{
-                  paddingLeft: "10px",
-                  fontSize: "1rem",
-                  borderRadius: "10px",
-                  borderBottom: "1px solid rgba(219,219,219)",
-                }}
-              />
-            </div>
+            {imageUrl && (
+              <div>
+                <img
+                  src={imageUrl}
+                  alt={imageUrl}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "10px",
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -118,7 +153,7 @@ const CreatePost = () => {
             className="btn  waves-effect waves-light  post-btn"
             onClick={() => handlePost()}
           >
-            <i className="bx bx-send"></i>
+            <i className="bx bx-send">Edit</i>
           </button>
         </div>
       </div>
@@ -126,4 +161,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

@@ -29,14 +29,17 @@ function Login() {
           setLoading(true);
         }
         if (data.error) {
-          M.toast({ html: data.error, classes: " red" });
+          M.toast({
+            html: data.error,
+            classes: "#e53935 red darken-1 rounded",
+          });
         } else {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           dispatch({ type: "USER", payload: data.user });
           M.toast({
             html: "SignedIn success",
-            classes: "blue",
+            classes: "#43a047 green darken-1 rounded",
           });
           history.push("/explore");
         }
