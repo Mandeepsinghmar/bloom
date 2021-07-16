@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css";
-import { useHistory } from "react-router";
 import "./style.css";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
 
   const [imageUrl, setImageUrl] = useState("");
-  const history = useHistory();
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -37,6 +36,8 @@ const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "insta-clone");
@@ -49,11 +50,15 @@ const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.url);
-          setImageUrl(data.url);
+          if (isMounted) {
+            setImageUrl(data.url);
+          }
         })
         .catch((err) => console.log(err));
     }
+    return () => {
+      isMounted = false;
+    };
   }, [image]);
 
   const handlePost = () => {
@@ -93,17 +98,23 @@ const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
     }
   };
   return (
-    <div className="post-container" style={{ marginTop: "100px" }}>
+    <div
+      className="post-container"
+      style={{ marginTop: "50px", marginBottom: "50px" }}
+    >
       <div className=" input-field">
         <div className=" createpost ">
-          <input
+          <textarea
             type="text"
             placeholder="Caption..."
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             className="caption"
             style={{
+              border: "none",
               borderBottom: "1px solid rgba(219,219,219)",
+              cursor: "revert",
+              outline: "none",
             }}
           />
           <div className="file-field input-field post-image">
@@ -134,18 +145,6 @@ const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
                 />
               </div>
             )}
-            {/* <div className="file-path-wrapper" style={{ width: "100%" }}>
-              <input
-                className="file-path validate"
-                type="text"
-                style={{
-                  paddingLeft: "10px",
-                  fontSize: "1rem",
-                  borderRadius: "10px",
-                  borderBottom: "1px solid rgba(219,219,219)",
-                }}
-              />
-            </div> */}
           </div>
         </div>
 
@@ -154,9 +153,7 @@ const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
             className="btn  waves-effect waves-light  post-btn"
             onClick={() => handlePost()}
           >
-            <i className="bx bx-send">
-              <p>Edit</p>
-            </i>
+            <i className="bx bx-send">Edit</i>
           </button>
         </div>
       </div>

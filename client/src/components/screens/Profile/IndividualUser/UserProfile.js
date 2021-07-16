@@ -126,14 +126,16 @@ function UserProfile() {
                 </p>
                 {showFollow ? (
                   <p
-                    className="follow-btn f-u-btn btn waves-effect waves-light white"
+                    className="follow-btn f-u-btn btn"
+                    style={{ zIndex: "0" }}
                     onClick={() => followUser()}
                   >
                     Follow
                   </p>
                 ) : (
                   <p
-                    className="unfollow-btn f-u-btn btn waves-effect waves-light white"
+                    className="unfollow-btn f-u-btn btn white"
+                    style={{ zIndex: "0" }}
                     onClick={() => unfollowUser()}
                     style={{ background: "red" }}
                   >
