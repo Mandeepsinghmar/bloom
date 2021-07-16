@@ -107,40 +107,80 @@ function UserProfile() {
     <>
       {userProfile ? (
         <div className="profile-container-wrapper">
-          <div className="profile-container">
+          <div className="profile-container individual">
             <div className="pic-content">
-              <img src={userProfile.user.pic} />
+              <img className="image" src={userProfile.user.pic} />
             </div>
-            <div>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
               <div className="username-btn">
-                <h4>{userProfile.user.name}</h4>
+                <p
+                  style={{
+                    fontSize: "2rem",
+                    textTransform: "lowercase",
+                    fontWeight: "300",
+                  }}
+                >
+                  {userProfile.user.name}
+                </p>
                 {showFollow ? (
-                  <button
+                  <p
                     className="follow-btn f-u-btn btn waves-effect waves-light white"
                     onClick={() => followUser()}
                   >
                     Follow
-                  </button>
+                  </p>
                 ) : (
-                  <button
+                  <p
                     className="unfollow-btn f-u-btn btn waves-effect waves-light white"
                     onClick={() => unfollowUser()}
                     style={{ background: "red" }}
                   >
                     Following
-                  </button>
+                  </p>
                 )}
               </div>
 
               <div className="follower">
                 <p>
-                  <strong>{userProfile.posts.length}</strong> posts
+                  <strong style={{ fontSize: "1.2rem" }}>
+                    {userProfile.posts.length}
+                  </strong>{" "}
+                  posts
                 </p>
                 <p>
-                  <strong>{userProfile.user.followers.length}</strong> followers
+                  <strong style={{ fontSize: "1.2rem" }}>
+                    {userProfile.user.followers.length}
+                  </strong>{" "}
+                  followers
                 </p>
                 <p>
-                  <strong>{userProfile.user.following.length}</strong> following
+                  <strong style={{ fontSize: "1.2rem" }}>
+                    {userProfile.user.following.length}
+                  </strong>{" "}
+                  following
+                </p>
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "1.2rem",
+                    textTransform: "lowercase",
+                    width: "200px",
+                    fontWeight: "400",
+                  }}
+                >
+                  {userProfile.user.bio}
+                </p>
+                <p style={{ marginTop: "10px", fontWeight: "600" }}>
+                  <a
+                    href={userProfile.user.website}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {userProfile.user.website.slice(8)}
+                  </a>
                 </p>
               </div>
             </div>

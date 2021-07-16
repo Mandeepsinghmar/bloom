@@ -47,7 +47,7 @@ function UserPosts() {
       .then((res) => res.json())
       .then((result) => {
         const newData = myPosts.map((post) => {
-          if (post._id == result._id) {
+          if (post._id === result._id) {
             return result;
           } else {
             return post;
@@ -72,7 +72,7 @@ function UserPosts() {
       .then((res) => res.json())
       .then((result) => {
         const newData = myPosts.map((post) => {
-          if (post._id == result._id) {
+          if (post._id === result._id) {
             return result;
           } else {
             return post;
@@ -99,7 +99,7 @@ function UserPosts() {
         .then((res) => res.json())
         .then((result) => {
           const newData = myPosts.map((post) => {
-            if (post._id == result._id) {
+            if (post._id === result._id) {
               return result;
             } else {
               return post;

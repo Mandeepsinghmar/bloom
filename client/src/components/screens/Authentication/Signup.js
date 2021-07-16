@@ -25,13 +25,19 @@ function Signup() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({ html: data.error, classes: "#f44336 red" });
+          M.toast({
+            html: data.error,
+            classes: "#e53935 red darken-1 rounded",
+          });
         } else if (
           !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             email
           )
         ) {
-          M.toast({ html: "Invalid email", classes: "#f44336 red" });
+          M.toast({
+            html: "Invalid email",
+            classes: "#e53935 red darken-1 rounded",
+          });
           return;
         } else if (
           !/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/.test(
@@ -41,12 +47,15 @@ function Signup() {
           M.toast({
             html: "Password should be minimum 8 characters, at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character.",
 
-            classes: "toast",
+            classes: "#e53935 red darken-1 rounded",
           });
           return;
         } else {
           setLoading(true);
-          M.toast({ html: data.message, classes: " dark blue" });
+          M.toast({
+            html: data.message,
+            classes: "#43a047 green darken-1 rounded",
+          });
           history.push("/login");
         }
       })

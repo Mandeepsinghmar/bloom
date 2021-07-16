@@ -10,7 +10,11 @@ function Profile() {
   const [image, setImage] = useState("");
   const { state, dispatch } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
-  const[name,setName] = useState('')
+  const [name, setName] = useState("");
+  const [edit, setEdit] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [bio, setBio] = useState("");
+  const [website, setWebsite] = useState("");
 
   useEffect(() => {
     let abortCont = new AbortController();
@@ -45,6 +49,13 @@ function Profile() {
       // mounted = false;
     };
   }, []);
+  useEffect(() => {
+    if (state) {
+      setName(state.name);
+      setBio(state.bio);
+      setWebsite(state.website);
+    }
+  }, [state]);
 
   useEffect(() => {
     let abortCont = new AbortController();
@@ -100,7 +111,7 @@ function Profile() {
     }
   }, [image]);
 
-  const updateProfile = ()=>{
+  const updateProfile = () => {
     fetch("/updateprofile", {
       method: "put",
       headers: {
@@ -109,23 +120,38 @@ function Profile() {
       },
       body: JSON.stringify({
         name,
+        bio,
+        website,
       }),
     })
       .then((res) => res.json())
       .then((result) => {
+        setEdit(false);
         localStorage.setItem(
           "user",
-          JSON.stringify({ ...state, pic: result.pic })
+          JSON.stringify({
+            ...state,
+            name: result.name,
+            bio: result.bio,
+            website: result.website,
+          })
         );
-        dispatch({ type: "UPDATEPIC", payload: result.pic });
+        dispatch({
+          type: "UPDATEPROFILE",
+          payload: {
+            name: result.name,
+            bio: result.bio,
+            website: result.website,
+          },
+        });
 
         M.toast({
-          html: "Update image done!!",
+          html: "Update profile done!!",
 
-          classes: "blue",
+          classes: "#43a047 green darken-1 rounded",
         });
       });
-  }
+  };
 
   const updatePhoto = (file) => {
     setImage(file);
@@ -135,7 +161,7 @@ function Profile() {
     <div>
       {state ? (
         <div className="profile-container-wrapper">
-          <div className="profile-container">
+          <div className="profile-container user">
             <div className="pic-content">
               <div className="file-field input-field">
                 <label>
@@ -152,36 +178,193 @@ function Profile() {
                       className="user-image"
                       src={state.pic}
                     />
+
                     {toggle && <i className="bx bxs-camera camera"></i>}
                   </span>
                 </label>
               </div>
             </div>
-            <div className="profile-desc">
+            <div
+              className="profile-desc"
+              style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+            >
               <div>
-              <input type='text' value={name} onChange={(e)=>setName(e.target.value) } />
-                <h4>{state.name}</h4>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "25px",
+                    marginTop: "30px",
+                  }}
+                >
+                  {edit ? (
+                    <>
+                      <div
+                        style={{ marginLeft: "90px" }}
+                        className="edit-profile"
+                      >
+                        <input
+                          style={{
+                            width: "300px",
+                            border: "none",
+                            border: "1px solid rgba(219,219,219) ",
+                            outline: "none",
+                            padding: "4px 10px",
+                            borderRadius: "10px",
+                          }}
+                          placeholder="John Doe"
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          textTransform: "lowercase",
+                          fontWeight: "300",
+                        }}
+                      >
+                        {state.name}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
+              {edit ? (
+                ""
+              ) : (
+                <div className="follower">
+                  {myPosts ? (
+                    <p>
+                      <strong style={{ fontSize: "1.2rem" }}>
+                        {myPosts.length}
+                      </strong>{" "}
+                      posts
+                    </p>
+                  ) : (
+                    <p>
+                      <strong style={{ fontSize: "1.2rem" }}>0</strong> post
+                    </p>
+                  )}
 
-              <div className="follower">
-                {myPosts ? (
                   <p>
-                    <strong>{myPosts.length}</strong> posts
+                    <strong style={{ fontSize: "1.2rem" }}>
+                      {state.followers.length}
+                    </strong>{" "}
+                    followers
                   </p>
+                  <p>
+                    <strong style={{ fontSize: "1.2rem" }}>
+                      {state.following.length}
+                    </strong>{" "}
+                    following
+                  </p>
+                </div>
+              )}
+
+              <div>
+                {/* <p>{state.bio}</p> */}
+                {edit ? (
+                  <>
+                    <div
+                      style={{
+                        marginLeft: "90px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      className="edit-profile"
+                    >
+                      <textarea
+                        style={{
+                          width: "325px",
+                          height: "90px",
+                          border: "none",
+                          border: "1px solid rgba(219,219,219) ",
+                          outline: "none",
+                          padding: "4px 10px",
+                          borderRadius: "10px",
+                          overflowY: "hidden",
+                        }}
+                        placeholder="Write your cool bio!"
+                        type="text"
+                        value={bio}
+                        onChange={(e) => setBio(e.target.value)}
+                      />
+                      <input
+                        style={{
+                          width: "300px",
+                          border: "none",
+                          border: "1px solid rgba(219,219,219) ",
+                          outline: "none",
+                          padding: "4px 10px",
+                          borderRadius: "10px",
+                          marginTop: "10px",
+                        }}
+                        placeholder="https://example.com"
+                        type="text"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                      />
+                    </div>
+                  </>
                 ) : (
-                  <p>
-                    <strong>0</strong> post
-                  </p>
+                  <div>
+                    <p
+                      style={{
+                        fontSize: "1.2rem",
+                        textTransform: "lowercase",
+                        width: "200px",
+                        fontWeight: "400",
+                      }}
+                    >
+                      {state.bio}
+                    </p>
+                    <p style={{ marginTop: "10px", fontWeight: "600" }}>
+                      <a href={state.website} target="_blank" rel="noreferrer">
+                        {state.website && state.website.slice(8)}
+                      </a>
+                    </p>
+                  </div>
                 )}
-
-                <p>
-                  <strong>{state.followers.length}</strong> followers
-                </p>
-                <p>
-                  <strong>{state.following.length}</strong> following
-                </p>
               </div>
             </div>
+            {edit ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  marginLeft: "30px",
+                }}
+                className="btn-container"
+              >
+                <p className="profile-btn save-btn" onClick={updateProfile}>
+                  Save Profile
+                </p>
+                <p
+                  className="profile-btn cancel-btn"
+                  onClick={() => setEdit(false)}
+                >
+                  Cancel
+                </p>
+              </div>
+            ) : (
+              <div className="btn-container">
+                <p
+                  className="profile-btn edit-tn"
+                  onClick={() => setEdit(!edit)}
+                >
+                  Edit Profile
+                </p>
+              </div>
+            )}
           </div>
           <div className="profile-posts">
             <MyPosts />
