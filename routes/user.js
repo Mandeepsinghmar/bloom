@@ -95,11 +95,11 @@ router.put("/updatepic", requireLogin, (req, res) => {
 });
 
 router.put("/updateprofile", requireLogin, (req, res) => {
-  const { name } = req.body;
+  const { name, bio, website } = req.body;
 
   User.findByIdAndUpdate(
     req.user._id,
-    { $set: { name } },
+    { $set: { name, bio, website } },
     { new: true },
     (err, result) => {
       if (err) {

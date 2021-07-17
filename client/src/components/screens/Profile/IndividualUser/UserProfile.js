@@ -181,7 +181,7 @@ function UserProfile() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {userProfile.user.website.slice(8)}
+                    {userProfile.user.website && userProfile.user.website.slice(8)}
                   </a>
                 </p>
               </div>

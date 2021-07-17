@@ -5,15 +5,27 @@ import EditPost from "./EditPost";
 import { UserContext } from "../../../App";
 
 const customStyles = {
+  overlay: {
+    position: "fixed",
+    top: "60px",
+    left: 0,
+    right: 0,
+    bottom: "40px",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
+  },
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    padding: "10px",
-    minWidth: "400px",
+    position: "absolute",
+    top: "10px",
+    left: "40px",
+    right: "40px",
+    bottom: "10px",
+    border: "1px solid #ccc",
+    background: "#fff",
+    overflow: "auto",
+    WebkitOverflowScrolling: "touch",
+    borderRadius: "4px",
+    outline: "none",
+    padding: "20px",
   },
 };
 
@@ -82,15 +94,15 @@ const RightSideBar = ({ postedBy, postid, setData, data }) => {
                       }}
                       style={{
                         border: "1px solid red",
-                        padding: "4px 8px ",
-                        width: "50px",
-                        borderRadius: "10px",
+                        padding: "4px",
                         cursor: "pointer",
                         color: "#2e313c",
                         fontWeight: "500",
+                        float: "right",
+                        borderRadius: "5px",
                       }}
                     >
-                      Close
+                      X
                     </p>
 
                     <EditPost

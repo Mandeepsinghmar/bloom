@@ -76,11 +76,14 @@
   right: -10px;
   top: 42px;
   border: 0.5px solid rgba(219, 219, 219);
-  border-radius: 10px;
 }
-.profile-items .link {
+
+.profile-items p:hover {
   text-decoration: none;
+  background-color: blue;
+  color: white !important;
 }
+
 .profile-items p {
   font-size: 1.1rem;
   border-top: 0.5px solid rgba(219, 219, 219);

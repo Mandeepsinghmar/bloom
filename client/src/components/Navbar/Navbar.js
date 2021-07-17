@@ -40,19 +40,23 @@ function Navbar() {
 
             {toggle && (
               <div className="profile-items">
-                <Link className=" link" to="/profile">
-                  <p>Profile</p>
-                </Link>
-                <p
-                  className="logout-btn link"
-                  onClick={() => {
-                    localStorage.clear();
-                    dispatch({ type: "CLEAR" });
-                    history.push("/login");
-                  }}
-                >
-                  Logout
-                </p>
+                <div className="link">
+                  <Link to="/profile">
+                    <p>Profile</p>
+                  </Link>
+                </div>
+
+                <div className=" link">
+                  <p
+                    onClick={() => {
+                      localStorage.clear();
+                      dispatch({ type: "CLEAR" });
+                      history.push("/login");
+                    }}
+                  >
+                    Logout
+                  </p>
+                </div>
               </div>
             )}
           </div>

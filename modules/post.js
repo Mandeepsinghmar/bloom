@@ -17,6 +17,12 @@ const postSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    bookmarks: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
     comments: [
       {
         text: String,

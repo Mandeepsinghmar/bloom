@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../../../App";
+import Posts from "../../Gallery/Posts";
 import Post from "../../Post/Post";
 
 function UserPosts() {
@@ -133,16 +134,9 @@ function UserPosts() {
     }
   };
   return (
-    <>
-      <Post
-        data={myPosts}
-        likePost={likePost}
-        unLikePost={unLikePost}
-        makeComment={makeComment}
-        deletePost={deletePost}
-        state={state}
-      />
-    </>
+    <div>
+      <Posts data={myPosts} />
+    </div>
   );
 }
 

@@ -3,7 +3,8 @@ import { UserContext } from "../../../../App";
 import FadeLoader from "react-spinners/FadeLoader";
 import M from "materialize-css";
 import "../style.css";
-import Posts from "../Posts";
+import Posts from "../../Gallery/Posts";
+import SwitchTabs from "./SwitchTabs";
 
 function Profile() {
   const [myPosts, setMyPosts] = useState();
@@ -375,11 +376,8 @@ function Profile() {
               )}
             </div>
           </div>
-          <div
-            className="profile-posts"
-            style={{ paddingTop: "40px", marginTop: "-10px" }}
-          >
-            <Posts myPosts={myPosts} />
+          <div>
+            <SwitchTabs data={myPosts} />
           </div>
         </>
       ) : (

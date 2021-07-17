@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import M from "materialize-css";
 import "./style.css";
-import FadeLoader from "react-spinners/FadeLoader";
 
-const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
+const EditPost = ({ postId, setShowOptions }) => {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
 
@@ -115,6 +114,8 @@ const EditPost = ({ postId, setModalIsOpen, setShowOptions }) => {
               borderBottom: "1px solid rgba(219,219,219)",
               cursor: "revert",
               outline: "none",
+              borderRadius: "0px",
+              maxWidth: "230px",
             }}
           />
           <div className="file-field input-field post-image">
