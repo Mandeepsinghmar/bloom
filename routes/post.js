@@ -52,6 +52,37 @@ router.post("/createpost", requireLogin, (req, res) => {
     });
 });
 
+router.get("/post/:postId", requireLogin, (req, res) => {
+  Post.findOne({ _id: req.params.postId })
+    .populate("postedBy", "_id name pic")
+    .populate("comments.postedBy", "_id name pic")
+    .exec((err, post) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      }
+      res.json(post);
+    });
+});
+
+router.put("/editpost", requireLogin, (req, res) => {
+  const { caption, imageUrl } = req.body;
+  console.log(req.body.userId);
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    { $set: { caption, imageUrl } },
+    { new: true }
+  )
+    .populate("comments.postedBy", "_id name pic")
+    .populate("postedBy", "_id name pic")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
+});
+
 router.get("/mypost", requireLogin, (req, res) => {
   Post.find({ postedBy: req.user._id })
     .populate("postedBy", "_id name pic")
@@ -104,6 +135,61 @@ router.put("/unlike", requireLogin, (req, res) => {
       } else {
         res.json(result);
       }
+    });
+});
+
+router.put("/bookmark", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $push: { bookmarks: req.user._id },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("comments.postedBy", "_id name pic")
+    .populate("postedBy", "_id name pic")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+router.put("/unbookmark", requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {
+      $pull: { bookmarks: req.user._id },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("comments.postedBy", "_id name pic")
+    .populate("postedBy", "_id name pic")
+    .exec((err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      } else {
+        res.json(result);
+      }
+    });
+});
+
+router.get("/getbookmarkposts", requireLogin, (req, res) => {
+  Post.find({ bookmarks: { $in: req.user._id } })
+    .populate("postedBy", "_id name pic")
+    .populate("comments.postedBy", "_id name pic")
+    .sort("-createdAt")
+    .then((posts) => {
+      res.json(posts);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 

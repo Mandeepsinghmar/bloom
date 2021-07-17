@@ -1,7 +1,7 @@
 .profile-container-wrapper {
   max-width: 800px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .pic-content {
@@ -113,22 +113,6 @@
   color: blue;
 }
 
-/* posts  */
-.posts-container-wrapper {
-  display: flex;
-  max-width: 900px;
-  width: 100%;
-  flex-wrap: wrap;
-  margin: 0px auto;
-  justify-content: center;
-  align-items: center;
-}
-.image-url {
-  display: flex;
-  width: 300px;
-  height: 300px;
-}
-
 @media screen and (max-width: 600px) {
   .pic-content {
     margin-bottom: -10px;
@@ -195,5 +179,8 @@
   .camera {
     right: 30px;
     bottom: 35px;
+  }
+  .tab-container {
+    margin-top: 20px !important;
   }
 }

@@ -15,6 +15,7 @@ import UserProfile from "./components/screens/Profile/IndividualUser/UserProfile
 import Home from "./components/screens/Home/Home";
 import { reducer, initialState } from "./reducers/userReducer";
 import Explore from "./components/screens/Explore/Explore";
+import SinglePost from "./components/screens/Gallery/SinglePost";
 
 export const UserContext = createContext();
 
@@ -48,6 +49,10 @@ const Routing = () => {
 
       <Route path="/profile/:userid">
         <UserProfile />
+      </Route>
+
+      <Route path="/post/:postid">
+        <SinglePost />
       </Route>
 
       <Route path="/explore">

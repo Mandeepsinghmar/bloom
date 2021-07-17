@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Posts from "../Gallery/Posts";
-import Post from "../Post/Post";
+import React, { useState, useEffect } from "react";
+import Posts from "../../Gallery/Posts";
 
-function Explore() {
-  const [data, setData] = useState();
+function SavedPosts() {
+  const [savedPosts, setSavedPosts] = useState();
 
   useEffect(() => {
-    const abortCont = new AbortController();
+    let abortCont = new AbortController();
+
     fetch(
-      "/allpost",
+      "/getbookmarkposts",
 
       {
         signal: abortCont.signal,
+
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
@@ -19,7 +20,7 @@ function Explore() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
+        setSavedPosts(data);
       })
       .catch((err) => {
         if (err.name === "AbortError") {
@@ -32,12 +33,11 @@ function Explore() {
       abortCont.abort();
     };
   }, []);
-
   return (
-    <div style={{ marginTop: "100px" }}>
-      <Posts data={data} setData={setData} />
+    <div>
+      <Posts data={savedPosts} />
     </div>
   );
 }
 
-export default Explore;
+export default SavedPosts;

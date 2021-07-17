@@ -62,3 +62,13 @@ input[type="file"] {
 .post-btn:hover {
   border: 1px solid #2e313c;
 }
+@media screen and (max-width: 500px) {
+  .input-field {
+    flex-direction: column !important;
+    justify-content: center;
+  }
+  .post-image {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}

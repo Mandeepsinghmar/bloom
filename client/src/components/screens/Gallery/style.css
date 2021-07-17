@@ -1,0 +1,45 @@
+/* posts  */
+.posts-container-wrapper {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  justify-content: center;
+  align-items: center;
+  /* flex-grow: 1;
+  flex-shrink: 1; */
+}
+.image-url {
+  /* display: flex; */
+  width: 350px;
+  height: 350px;
+  margin: 10px;
+  transition: 0.5 ease;
+  position: relative;
+}
+
+.likes-comment {
+  transition: 0.5s ease;
+  position: absolute;
+  margin-left: 120px;
+  margin-top: -200px;
+  opacity: 0;
+}
+.likes-comment-container span {
+  color: white;
+}
+
+.posts-container:hover .likes-comment {
+  opacity: 1 !important;
+}
+/*  */
+.posts-container:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 600px) {
+  .go-back {
+    margin-left: 10px !important;
+  }
+}

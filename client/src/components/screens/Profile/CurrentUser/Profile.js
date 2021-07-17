@@ -3,7 +3,8 @@ import { UserContext } from "../../../../App";
 import FadeLoader from "react-spinners/FadeLoader";
 import M from "materialize-css";
 import "../style.css";
-import Posts from "../Posts";
+import Posts from "../../Gallery/Posts";
+import SwitchTabs from "./SwitchTabs";
 
 function Profile() {
   const [myPosts, setMyPosts] = useState();
@@ -330,7 +331,12 @@ function Profile() {
                       >
                         {state.bio}
                       </p>
-                      <p style={{ marginTop: "10px", fontWeight: "600" }}>
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          fontWeight: "600",
+                        }}
+                      >
                         <a
                           href={state.website}
                           target="_blank"
@@ -375,11 +381,8 @@ function Profile() {
               )}
             </div>
           </div>
-          <div
-            className="profile-posts"
-            style={{ paddingTop: "40px", marginTop: "-10px" }}
-          >
-            <Posts myPosts={myPosts} />
+          <div>
+            <SwitchTabs data={myPosts} />
           </div>
         </>
       ) : (

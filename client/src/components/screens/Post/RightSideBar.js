@@ -5,15 +5,34 @@ import EditPost from "./EditPost";
 import { UserContext } from "../../../App";
 
 const customStyles = {
+  overlay: {
+    position: "fixed",
+    top: "0px",
+
+    bottom: "0px",
+    left: "0px",
+    right: "0px",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
   content: {
-    top: "50%",
-    left: "50%",
+    position: "absolue",
+    border: "1px solid #ccc",
+    background: "#e3e3e3",
+    overflow: "auto",
+    WebkitOverflowScrolling: "touch",
+    borderRadius: "4px",
+    outline: "none",
+    padding: "30px 20px",
+
+    top: "20%",
+    bottom: "100px",
+    left: "auto",
     right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    padding: "10px",
-    minWidth: "400px",
   },
 };
 
@@ -75,24 +94,6 @@ const RightSideBar = ({ postedBy, postid, setData, data }) => {
                     }}
                     style={customStyles}
                   >
-                    <p
-                      onClick={() => {
-                        setModalIsOpen(false);
-                        setShowOptions(false);
-                      }}
-                      style={{
-                        border: "1px solid red",
-                        padding: "4px 8px ",
-                        width: "50px",
-                        borderRadius: "10px",
-                        cursor: "pointer",
-                        color: "#2e313c",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Close
-                    </p>
-
                     <EditPost
                       postId={postid}
                       setModalIsOpen={setModalIsOpen}
