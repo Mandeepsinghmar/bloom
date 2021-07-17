@@ -308,14 +308,13 @@ const PostCard = ({ post, setData, data }) => {
                         color: "#8E8E8E",
                       }}
                     >
-                      hide all{" "}
+                      hide{" "}
                       <span
                         style={{
                           color: "#8E8E8E",
                         }}
                       >
                         {" "}
-                        {post.comments.length}{" "}
                         {post.comments.length === 1 ? "comment" : "comments"}
                       </span>{" "}
                     </p>

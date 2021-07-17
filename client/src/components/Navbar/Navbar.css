@@ -39,7 +39,7 @@
   position: relative;
 }
 .links p {
-  font-size: 0.8rem;
+  font-size: rem;
   font-weight: 600;
 }
 #links .material-icons {

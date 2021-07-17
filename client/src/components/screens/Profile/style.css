@@ -180,4 +180,7 @@
     right: 30px;
     bottom: 35px;
   }
+  .tab-container {
+    margin-top: 20px !important;
+  }
 }

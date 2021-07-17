@@ -331,7 +331,12 @@ function Profile() {
                       >
                         {state.bio}
                       </p>
-                      <p style={{ marginTop: "10px", fontWeight: "600" }}>
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          fontWeight: "600",
+                        }}
+                      >
                         <a
                           href={state.website}
                           target="_blank"

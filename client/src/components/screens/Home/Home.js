@@ -41,6 +41,10 @@ function Home() {
       }}
     >
       <CreatePost />
+
+      <Suspense fallback={<div>Loading</div>}>
+        <MyPosts />
+      </Suspense>
       {data ? (
         <Post data={data} setData={setData} state={state} />
       ) : (
@@ -57,10 +61,6 @@ function Home() {
           <p>You are not following anyone!</p>
         </div>
       )}
-
-      <Suspense fallback={<div>Loading</div>}>
-        <MyPosts />
-      </Suspense>
     </div>
   );
 }

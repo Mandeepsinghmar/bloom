@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Post from "../Post/Post";
+import PostCard from "../Post/PostCard";
 
 const SinglePost = () => {
   const { postid } = useParams();
   let [data, setData] = useState();
-  const [modalIsOpen, setModalIsOpen] = useState(true);
 
   const history = useHistory();
 
@@ -36,6 +36,7 @@ const SinglePost = () => {
       abortCont.abort();
     };
   }, []);
+
   return (
     <div style={{ marginTop: "100px" }}>
       <p
@@ -53,7 +54,9 @@ const SinglePost = () => {
       >
         Go Back
       </p>
-      <Post data={data} setData={setData} />
+      <div style={{ marginTop: "80px" }}>
+        <Post setData={setData} data={data} />
+      </div>
     </div>
   );
 };

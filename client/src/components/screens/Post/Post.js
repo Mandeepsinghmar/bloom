@@ -6,16 +6,12 @@ import "./style.css";
 const Post = ({ data, setData }) => {
   return (
     <div>
-      <div className="home" style={{ marginTop: "70px" }}>
+      <div className="home">
         {data ? (
           data.map((post) => (
-            <PostCard
-              post={post}
-              data={data}
-              setData={setData}
-
-            />
-            {console.log(post)}
+            <div>
+              <PostCard post={post} data={data} setData={setData} />
+            </div>
           ))
         ) : (
           <div className="loader">

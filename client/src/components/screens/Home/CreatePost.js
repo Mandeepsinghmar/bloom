@@ -2,16 +2,26 @@ import React, { useEffect, useState } from "react";
 import M from "materialize-css";
 import { useHistory } from "react-router";
 import "./style.css";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const CreatePost = () => {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
 
   const [imageUrl, setImageUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const history = useHistory();
 
   useEffect(() => {
     const abortCont = new AbortController();
+    if (image) {
+      setLoading(true);
+    }
+
+    if (imageUrl) {
+      setLoading(false);
+    }
 
     const data = new FormData();
     data.append("file", image);
@@ -26,6 +36,7 @@ const CreatePost = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+          setLoading(false);
           setImageUrl(data.url);
         })
         .catch((err) => console.log(err));
@@ -60,7 +71,7 @@ const CreatePost = () => {
             html: "Created post successfully",
             classes: "#43a047 green darken-1 rounded",
           });
-          history.push("/");
+          window.location.reload();
         });
     } else {
       M.toast({
@@ -73,52 +84,88 @@ const CreatePost = () => {
     <div className="post-container">
       <div className=" input-field">
         <div className=" createpost ">
-          <input
+          <textarea
             type="text"
             placeholder="Caption..."
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             className="caption"
             style={{
-              borderBottom: "1px solid rgba(219,219,219)",
+              border: "1px solid rgba(219,219,219)",
+              cursor: "revert",
+              outline: "none",
+              borderRadius: "10px",
+              maxWidth: "300px",
+              padding: "10px ",
+              minHeight: "60px",
+              maxHeight: "200px",
+              fontSize: "1.2rem",
             }}
           />
           <div className="file-field input-field post-image">
             <div className="btn   white image-btn">
               <span style={{ textDecoration: "none" }}>
-                <i
-                  className="bx bxs-camera-plus"
-                  style={{ fontSize: "1.2rem", textTransform: "lowercase" }}
-                >
-                  upload
-                </i>
+                <p style={{ fontWeight: "600", fontSize: "1.2rem" }}>📷Image</p>
               </span>
               <input
                 type="file"
                 onChange={(e) => setImage(e.target.files[0])}
               />
-            </div>
-            <div className="file-path-wrapper" style={{ width: "100%" }}>
-              <input
-                className="file-path validate"
-                type="text"
+            </div>{" "}
+            {loading && (
+              <div
                 style={{
-                  paddingLeft: "10px",
-                  fontSize: "1rem",
-                  borderRadius: "10px",
-                  borderBottom: "1px solid rgba(219,219,219)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginLeft: "20px",
                 }}
-              />
-            </div>
+              >
+                <FadeLoader
+                  color="#1a91da"
+                  height={10}
+                  width={2}
+                  radius={1}
+                  margin={2}
+                />
+              </div>
+            )}
+            {imageUrl && (
+              <div>
+                <img
+                  src={imageUrl}
+                  alt={imageUrl}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "4px",
+                    position: "relative",
+                    border: "1px solid rgba(219, 219, 219)",
+                  }}
+                />
+                <p
+                  style={{
+                    position: "absolute",
+                    marginLeft: "87px",
+                    marginTop: "-112px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setImageUrl(null)}
+                >
+                  ❌
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
         <div>
           <button
             className="btn  waves-effect waves-light  post-btn"
+            style={{ zIndex: "0" }}
             onClick={() => handlePost()}
           >
-            <i className="bx bx-send"></i>
+            <p>Post🚀</p>
           </button>
         </div>
       </div>
