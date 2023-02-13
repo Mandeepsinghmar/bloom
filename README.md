@@ -1,5 +1,5 @@
 # bloom
-A social media application built using MERN.
+A social media application built using MERN stack.
 
 ## Project overview:
 Deployed version - https://bloom-app.herokuapp.com/
